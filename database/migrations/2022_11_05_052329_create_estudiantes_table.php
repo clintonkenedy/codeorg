@@ -19,6 +19,7 @@ class CreateEstudiantesTable extends Migration
             $table->string('apellido_p',100);
             $table->string('apellido_m',100);
             $table->string('dni',100);
+            $table->foreignId('equipo_id')->constrained();
             $table->timestamps();
         });
     }
