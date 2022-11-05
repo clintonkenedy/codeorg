@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Problema;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProblemaController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ProblemaController extends Controller
     public function index()
     {
         //
-        $problemas=Problema::all();
-        return view('problema.index',compact('problemas'));
+        $usuarios=User::all();
+        return view('usuario.index',compact('usuarios'));
     }
 
     /**
@@ -43,10 +43,10 @@ class ProblemaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Problema  $problema
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Problema $problema)
+    public function show(User $user)
     {
         //
     }
@@ -54,10 +54,10 @@ class ProblemaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Problema  $problema
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Problema $problema)
+    public function edit(User $user)
     {
         //
     }
@@ -66,10 +66,10 @@ class ProblemaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Problema  $problema
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Problema $problema)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -77,24 +77,11 @@ class ProblemaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Problema  $problema
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Problema $problema)
+    public function destroy(User $user)
     {
         //
-    }
-
-    public function concurso()
-    {
-        //
-        $problemas=Problema::all();
-        return view('problema.index',compact('problemas'));
-    }
-    public function verproblema($id)
-    {
-        //
-        $problemas=Problema::all();
-        return view('problema.index',compact('problemas'));
     }
 }

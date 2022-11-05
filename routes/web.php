@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\ProblemaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +22,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('usuarios',UsuarioController::class);
+Route::resource('roles',RolesController::class);
+Route::resource('problemas',ProblemaController::class);
+Route::get('concursos',[ProblemaController::class,'concurso'])->name('concursos.index');
+Route::get('concursos{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show');
