@@ -89,7 +89,7 @@ class ProblemaController extends Controller
     {
         //
         $problemas=Problema::all();
-        return view('problema.index',compact('problemas'));
+        return view('concurso.index',compact('problemas'));
     }
     public function verproblema($id)
     {
