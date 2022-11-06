@@ -95,6 +95,19 @@ class ProblemaController extends Controller
     {
         //
         $problemas=Problema::all();
-        return view('problema.index',compact('problemas'));
+        $problema_=Problema::find($id);
+        return view('concurso.index',compact('problemas','problema_'));
+    }
+    public function login()
+    {
+        // dd($request->all);
+        // $problemas=Problema::all();
+        return view('concurso.loginconcurso');
+    }
+    public function postlogin(Request $request)
+    {
+        dd($request->all);
+        // $problemas=Problema::all();
+        return view('concurso.index');
     }
 }

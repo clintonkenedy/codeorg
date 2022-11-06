@@ -27,4 +27,6 @@ Route::resource('usuarios',UsuarioController::class);
 Route::resource('roles',RolesController::class);
 Route::resource('problemas',ProblemaController::class);
 Route::get('concursos',[ProblemaController::class,'concurso'])->name('concursos.index');
-Route::get('concursos{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show');
+Route::post('loginconcurso', [ProblemaController::class,'postlogin'])->name('concurso.login');
+Route::get('loginconcurso', [ProblemaController::class,'login'])->name('concurso.ver');
+Route::get('concursos/{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show');
