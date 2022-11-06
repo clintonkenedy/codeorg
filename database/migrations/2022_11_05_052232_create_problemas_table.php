@@ -15,10 +15,12 @@ class CreateProblemasTable extends Migration
     {
         Schema::create('problemas', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo',100);
-            $table->text('descripcion');
-            $table->text('objetivo');
-            $table->text('problema');
+            $table->string('titulo',60);
+            $table->longText('descripcion');
+            $table->text('entradas')->nullable();
+            $table->text('salidas')->nullable();
+            $table->text('restricciones')->nullable();
+            $table->string('problema');
             $table->text('solucion');
             $table->timestamps();
         });

@@ -15,6 +15,7 @@ class ProblemaController extends Controller
     public function index()
     {
         //
+
         $problemas=Problema::all();
         return view('problema.index',compact('problemas'));
     }
@@ -27,6 +28,7 @@ class ProblemaController extends Controller
     public function create()
     {
         //
+        return view('problema.crear');
     }
 
     /**
@@ -37,7 +39,18 @@ class ProblemaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $problema = new Problema();
+        $problema->titulo = $request->titulo;
+        $problema->descripcion = $request->descripcion;
+        $problema->entradas = $request->entradas;
+        $problema->salidas = $request->salidas;
+        $problema->restricciones = $request->restricciones;
+        $problema->problema = $request->problema;
+        $problema->solucion = $request->solucion;
+
+        $problema->save();
+        return redirect()->route('problemas.index');
+
     }
 
     /**
@@ -49,6 +62,7 @@ class ProblemaController extends Controller
     public function show(Problema $problema)
     {
         //
+
     }
 
     /**
@@ -83,6 +97,8 @@ class ProblemaController extends Controller
     public function destroy(Problema $problema)
     {
         //
+        $problema->delete();
+        return redirect()->route('problemas.index');
     }
 
     public function concurso()
