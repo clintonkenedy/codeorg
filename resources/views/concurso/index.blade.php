@@ -1,22 +1,87 @@
 @extends('layouts.app')
 
+@section('navbar')
+<nav class="navbar navbar-expand-md navbar-light navfondo shadow-lg">
+    <div class="container w-100 d-block d-sm-block d-md-none">
+        <div class="row  d-flex justify-content-between align-items-center">
+            <div class="col">
+                <img src="{{asset('img/logocode.png')}}" alt="no hay" class="img-fluid logocode">
+            </div>
+            <div class="col d-flex justify-content-end">
+                <a href="" class="ms-auto navtext navtextsalibg">
+                    <img src="{{asset('img/icosalir.png')}}" alt="no hay" class="img-fluid" style="height: 30px;">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="collapse navbar-collapse text-light" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+                <img src="{{asset('img/mariob.png')}}" alt="no hay" class="img-fluid logocode">
+            </ul>
+            <ul class="navbar-nav ms-auto navtext navtextbg">
+                <strong>Equipo:</strong> Team 1
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <img src="{{asset('img/logocode.png')}}" alt="no hay" class="img-fluid logocode">
+            </ul>
+            <ul class="navbar-nav ms-auto navtext navtextbg">
+                <strong>Tiempo:</strong> 02:22:53
+            </ul>
+            <ul class="navbar-nav ms-auto navtext navtextsalibg">
+                <a href="">
+                    <img src="{{asset('img/icosalir.png')}}" alt="no hay" class="img-fluid" style="height: 30px;">
+                </a>
+            </ul>
+        </div>
+    </div>
+</nav>
+@stop
+
 @section('content')
 <div class="container">
-    <div class="row mb-5">
+    <div class="row mb-5 mt-3">
         <div class="col text-center fs-1">
             <div class="d-block d-sm-block d-md-none">
-                <div class="navtext mb-3">
+                <div class="navtext navtextbg mb-3">
                     Grupo: Team 1
                 </div>
-                <div class="navtext">
+                <div class="navtext navtextbg">
                     Grupo: Los mejores
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="navtext cssnamebg">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-4 d-flex justify-content-center">
+                        <img src="{{asset('img/abred.png')}}" alt="no hay" class="img-fluid icopartici">
+                    </div>
+                    <div class="col">
+                        CESAR CUSI
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="navtext cssnamebg">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-4 d-flex justify-content-center">
+                        <img src="{{asset('img/aba.png')}}" alt="no hay" class="img-fluid icopartici">
+                    </div>
+                    <div class="col">
+                        CESAR CUSI
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
         <div class="col-sm-4 col-md-4 col-lg-3">
             <div class="overflow-auto alto">
+                @if(count($problemas)>0)
                 @foreach($problemas as $problema)
                 <a href="{{ route('concursos.show', $problema->id) }}">
                     <div class="pt-3 ps-3 mb-3 csspregu d-flex justify-content-between align-items-center">
@@ -25,6 +90,9 @@
                     </div>
                 </a>
                 @endforeach
+                @else
+                <div class="text-danger fs-3 bg-light text-center">No hay problemas</div>
+                @endif
             </div>
         </div>
         <div class="col text-dark">
@@ -45,10 +113,26 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <strong>Objetivo del problema:</strong>
+                        <strong>Entrada del problema:</strong>
                     </div>
                     <div class="col mb-3">
-                        {{$problema_->objetivo}}
+                        {{$problema_->entradas}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <strong>Salida del problema:</strong>
+                    </div>
+                    <div class="col mb-3">
+                        {{$problema_->salidas}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <strong>Restricciones del problema:</strong>
+                    </div>
+                    <div class="col mb-3">
+                        {{$problema_->restricciones}}
                     </div>
                 </div>
                 <div class="row">
@@ -56,7 +140,7 @@
                         <strong>Enlace del problema:</strong>
                     </div>
                     <div class="col mb-3">
-                        <a href="{{$problema_->problema}}" class="text-primary text-decoration-underline"><strong>Click para ver el prolema</strong></a>
+                        <a href="{{$problema_->problema}}" class="text-primary text-decoration-underline"><strong>Click para ver el problema</strong></a>
                     </div>
                 </div>
                 <div class="row mt-5">
@@ -65,16 +149,16 @@
                     </div>
                     <form action="" method="POST">
                         <div class="col d-flex justify-content-center">
-                            <input placeholder="Pegar el link de la solución" require type="text" class="w-50 mb-3 p-2">
+                            <input placeholder="Pegar el enlace de la solución" require type="text" class="w-50 mb-3 p-2">
                         </div>
                         <div class="col d-flex justify-content-center">
-                            <button class="w-50 btn btn-success">Enviar</button>
+                            <button class="w-50 btnenviar">Enviar</button>
                         </div>
                     </form>
                 </div>
             </div>
             @else
-            <p class="fs-3">Selecione un ejercicio</p>
+            <div style="height: 500px;" class="cssshowproblem fs-3 d-flex justify-content-center align-items-center">Selecione un ejercicio</div>
             @endif
         </div>
     </div>

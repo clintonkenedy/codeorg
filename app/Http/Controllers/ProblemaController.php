@@ -122,7 +122,7 @@ class ProblemaController extends Controller
     }
     public function postlogin(Request $request)
     {
-        dd($request->all);
+        dd($request->all());
         // $problemas=Problema::all();
         return view('concurso.index');
     }
