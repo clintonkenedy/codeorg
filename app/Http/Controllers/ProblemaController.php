@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Equipo;
 use App\Models\Problema;
 use Illuminate\Http\Request;
 
