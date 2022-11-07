@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ProblemaController;
+use App\Http\Controllers\CalificacionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('usuarios',UsuarioController::class);
 Route::resource('roles',RolController::class);
 Route::resource('problemas',ProblemaController::class);
+Route::resource('calificaciones',CalificacionController::class);
 Route::get('concursos',[ProblemaController::class,'concurso'])->name('concursos.index');
 Route::post('loginconcurso', [ProblemaController::class,'postlogin'])->name('concurso.login');
 Route::get('loginconcurso', [ProblemaController::class,'login'])->name('concurso.ver');

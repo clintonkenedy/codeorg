@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Database\Seeders\RoleSeeder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
-class RolController extends Controller
+class CalificacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +14,7 @@ class RolController extends Controller
     public function index()
     {
         //
-        $roles=Role::all();
-        return view('rol.index',compact('roles'));
+        return view('calificacion.index');
     }
 
     /**
@@ -30,8 +25,6 @@ class RolController extends Controller
     public function create()
     {
         //
-        $permisos= Permission::all();
-        return view('rol.crear',compact('permisos'));
     }
 
     /**
