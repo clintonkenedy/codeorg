@@ -14,7 +14,8 @@
         <form action="{{route('concurso.login')}}" method="POST">
             @method('POST')
             @csrf
-            <input name="code" type="text">
+            <label for="code">codigo</label>
+            <input id="code" name="code" type="text">
             <button type="submit">Enviar</button>
         </form>
     </div>

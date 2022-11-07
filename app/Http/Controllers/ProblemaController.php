@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipo;
 use App\Models\Problema;
 use Illuminate\Http\Request;
 
@@ -122,8 +123,17 @@ class ProblemaController extends Controller
     }
     public function postlogin(Request $request)
     {
-        dd($request->all);
+/*        $equipo=Equipo::all()->where('codigo',$request->code)-get();*/
+        $equipo = Equipo::where('codigo', $request->code)->first();
+        if($equipo){
+            return redirect()->route('concursos.index');
+        }
+        else{
+            return view('concurso.loginconcurso');
+        }
+
+
         // $problemas=Problema::all();
-        return view('concurso.index');
+
     }
 }

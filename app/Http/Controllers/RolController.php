@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use Database\Seeders\RoleSeeder;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class UsuarioController extends Controller
+class RolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,8 @@ class UsuarioController extends Controller
     public function index()
     {
         //
-
-        $usuarios=User::all();
-        return view('usuario.index',compact('usuarios'));
+        $roles=Role::all();
+        return view('rol.index',compact('roles'));
     }
 
     /**
@@ -29,8 +29,8 @@ class UsuarioController extends Controller
     public function create()
     {
         //
-        $roles= Role::all();
-        return view('usuario.crear',compact('roles'));
+        $permisos= Permission::all();
+        return view('rol.crear',compact('permisos'));
     }
 
     /**
@@ -47,10 +47,10 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
         //
     }
@@ -58,10 +58,10 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         //
     }
@@ -70,10 +70,10 @@ class UsuarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -81,10 +81,10 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
     }
