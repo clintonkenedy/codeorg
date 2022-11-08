@@ -97,64 +97,89 @@
         </div>
         <div class="col text-dark">
             @if(!empty($problema_))
-            <div class="container fs-5 border border-dark p-5 cssshowproblem overflow-auto">
-                <div class="row text-center mb-4">
-                    <div class="col fs-1">
-                        {{$problema_->titulo}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <strong>Descripción del problema:</strong>
-                    </div>
-                    <div class="col mb-3">
-                        {{$problema_->descripcion}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <strong>Entrada del problema:</strong>
-                    </div>
-                    <div class="col mb-3">
-                        {{$problema_->entradas}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <strong>Salida del problema:</strong>
-                    </div>
-                    <div class="col mb-3">
-                        {{$problema_->salidas}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <strong>Restricciones del problema:</strong>
-                    </div>
-                    <div class="col mb-3">
-                        {{$problema_->restricciones}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <strong>Enlace del problema:</strong>
-                    </div>
-                    <div class="col mb-3">
-                        <a href="{{$problema_->problema}}" class="text-primary text-decoration-underline"><strong>Click para ver el problema</strong></a>
-                    </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col mb-3 d-flex justify-content-center">
-                        <strong>Enlace de la solución del problema</strong>
-                    </div>
-                    <form action="" method="POST">
-                        <div class="col d-flex justify-content-center">
-                            <input placeholder="Pegar el enlace de la solución" require type="text" class="w-50 mb-3 p-2">
+            <div class="container">
+                <div class="row fs-5 border border-dark p-5 cssshowproblem overflow-auto">
+                    <div class="col">
+                        <div class="row text-center mb-4">
+                            <div class="col fs-1">
+                                {{$problema_->titulo}}
+                            </div>
                         </div>
-                        <div class="col d-flex justify-content-center">
-                            <button class="w-50 btnenviar">Enviar</button>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Descripción del problema:</strong>
+                            </div>
+                            <div class="col mb-3">
+                                {{$problema_->descripcion}}
+                            </div>
                         </div>
-                    </form>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Entrada del problema:</strong>
+                            </div>
+                            <div class="col mb-3">
+                                {{$problema_->entradas}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Salida del problema:</strong>
+                            </div>
+                            <div class="col mb-3">
+                                {{$problema_->salidas}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Restricciones del problema:</strong>
+                            </div>
+                            <div class="col mb-3">
+                                {{$problema_->restricciones}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Enlace del problema:</strong>
+                            </div>
+                            <div class="col mb-3">
+                                <a href="{{$problema_->problema}}" class="text-primary text-decoration-underline"><strong>Click para ver el problema</strong></a>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col mb-3 d-flex justify-content-center">
+                                <strong>Enlace de la solución del problema</strong>
+                            </div>
+                            <form action="" method="POST">
+                                <div class="col d-flex justify-content-center">
+                                    <input placeholder="Pegar el enlace de la solución" require type="text" class="w-50 mb-3 p-2">
+                                </div>
+                                <div class="col d-flex justify-content-center">
+                                    <button class="w-50 btnenviar">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5 d-flex justify-content-center">
+                    <div class="col-6 border border-dark bg-light rounded-4">
+                        <h4 class="text-center mt-4">Historial de envios del ejercicio: <strong>{{$problema_->titulo}}</strong></h4>
+                        <div class="d-flex justify-content-center">
+                            <table class="table table-sm w-50 mt-4 mb-4 fs-5 text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Enviado en</th>
+                                        <th scope="col">Estatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="row">02:05:00</td>
+                                        <td>Mark</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             @else
