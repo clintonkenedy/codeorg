@@ -32,3 +32,4 @@ Route::get('concursos',[ProblemaController::class,'concurso'])->name('concursos.
 Route::post('loginconcurso', [ProblemaController::class,'postlogin'])->name('concurso.login');
 Route::get('loginconcurso', [ProblemaController::class,'login'])->name('concurso.ver');
 Route::get('concursos/{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show');
+Route::get('ranking',[ProblemaController::class,'getranking'])->name('ranking.index');

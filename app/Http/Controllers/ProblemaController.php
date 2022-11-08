@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Problema;
+use App\Models\Puntuacion;
 use Illuminate\Http\Request;
 
 class ProblemaController extends Controller
@@ -145,9 +146,10 @@ class ProblemaController extends Controller
         else{
             return view('concurso.loginconcurso');
         }
-
-
-        // $problemas=Problema::all();
-
+    }
+    public function getranking(){
+        // --
+        $puntuacion=Puntuacion::all();
+        return view('concurso.ranking');
     }
 }
