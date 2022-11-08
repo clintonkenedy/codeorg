@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -43,6 +44,13 @@ class RolController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,['name'=>'required']);
+
+
+        $role = Role::create(['name'=>$request->input('name')]);
+        $role->syncPermissions($request->input('permisos'));
+        //dd($request->all());
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -65,6 +73,12 @@ class RolController extends Controller
     public function edit($id)
     {
         //
+        $rol=Role::find($id);
+        $permisos=Permission::all();
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+            ->all();
+        return view('rol.editar', compact('rol', 'permisos','rolePermissions'));
     }
 
     /**
@@ -76,7 +90,12 @@ class RolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rol=Role::find($id);
+        $rol->name=$request->input('name');
+        $rol->save();
+        $rol->syncPermissions($request->input('permisos'));
+        return redirect()->route('roles.index');
+
     }
 
     /**
@@ -88,5 +107,7 @@ class RolController extends Controller
     public function destroy($id)
     {
         //
+        Role::find($id)->delete();
+        return redirect()->route('roles.index');
     }
 }

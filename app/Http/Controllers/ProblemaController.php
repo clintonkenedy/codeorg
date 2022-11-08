@@ -71,9 +71,12 @@ class ProblemaController extends Controller
      * @param  \App\Models\Problema  $problema
      * @return \Illuminate\Http\Response
      */
-    public function edit(Problema $problema)
+    public function edit($id)
     {
         //
+        $problema=Problema::find($id);
+
+        return view('problema.editar',compact('problema'));
     }
 
     /**
@@ -83,9 +86,21 @@ class ProblemaController extends Controller
      * @param  \App\Models\Problema  $problema
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Problema $problema)
+    public function update(Request $request, $id)
     {
         //
+        $problema=Problema::find($id);
+
+        $problema->titulo=$request->input('titulo');
+        $problema->descripcion=$request->input('descripcion');
+        $problema->entradas=$request->input('entradas');
+        $problema->salidas=$request->input('salidas');
+        $problema->restricciones=$request->input('restricciones');
+        $problema->problema=$request->input('problema');
+        $problema->solucion=$request->input('solucion');
+        $problema->save();
+        return redirect()->route('problemas.index');
+
     }
 
     /**

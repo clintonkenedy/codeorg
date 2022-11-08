@@ -33,9 +33,9 @@
                                     <h5><span class="badge bg-cyan">{{$urol->name}}</span></h5></td>
                                 @endforeach
                             <td width="100px">
-                                <a class="btn btn-warning" href="#" role="button"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-warning" href="{{route('usuarios.edit',$usuario->id)}}" role="button"><i class="fas fa-edit"></i></a>
 
-                                <form action="{{route('problemas.destroy', $usuario)}}" method="post"  style="display: inline">
+                                <form action="{{route('usuarios.destroy', $usuario)}}" method="post"  style="display: inline">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>

@@ -39,7 +39,7 @@
                             <td>{{$problema->solucion}}</td>
                             <td style="min-width: 200px;">{{$problema->restricciones}}</td>
                             <td width="100px">
-                                <a class="btn btn-warning" href="#" role="button"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-warning" href="{{route('problemas.edit',$problema->id)}}" role="button"><i class="fas fa-edit"></i></a>
 
                                 <form action="{{route('problemas.destroy', $problema)}}" method="post"  style="display: inline">
                                     @method('delete')

@@ -32,7 +32,7 @@
                                 @endforeach
                             </td>
                             <td width="100px">
-                                <a class="btn btn-warning" href="#" role="button"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-warning" href="{{route('roles.edit',$rol)}}" role="button"><i class="fas fa-edit"></i></a>
 
                                 <form action="{{route('roles.destroy', $rol)}}" method="post"  style="display: inline">
                                     @method('delete')

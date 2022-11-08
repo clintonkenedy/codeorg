@@ -35,9 +35,8 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputState">Roles</label>
-                        <select id="inputState" class="form-control">
-                            <option value="" selected>Seleciona un rol</option>
+                        <label for="rol">Roles</label>
+                        <select id="rol" class="form-control" name="rol">
                             @foreach($roles as $rol)
                                 <option value="{{$rol->name}}">{{$rol->name}}</option>
                             @endforeach
@@ -48,7 +47,7 @@
 
 
                 <a href="{{route('usuarios.index')}}" class="btn btn-primary ">Regresar</a>
-                <button type="submit" class="btn btn-success float-right">Crear</button>
+                <button class="btn btn-success float-right">Crear</button>
             </form>
         </div>
     </div>
