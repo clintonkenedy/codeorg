@@ -18,6 +18,8 @@ class CreatePuntuacionsTable extends Migration
             $table->foreignId('equipo_id')->constrained();
             $table->foreignId('problema_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->string('enlace');
+            $table->string('reemix');
             $table->bigInteger('intentos');
             $table->enum('estado',['Aceptado','Rechazado','Parcialemte Aceptado']);
             $table->bigInteger('puesto');

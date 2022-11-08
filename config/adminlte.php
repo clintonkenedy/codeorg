@@ -340,6 +340,11 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'reenviar',
+            'url'  => 'reenviados',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
             'text' => 'calificar',
             'url'  => 'calificaciones',
             'icon' => 'fas fa-fw fa-user',

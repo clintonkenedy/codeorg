@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Equipo extends Model
+class Equipo extends Authenticatable
 {
     use HasFactory;
-
+    protected $guard = 'kids';
     public function estudiantes(){
         return $this->hasMany(Estudiante::class);
     }

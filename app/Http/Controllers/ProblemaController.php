@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Problema;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class ProblemaController extends Controller
 {
     /**
@@ -119,15 +119,24 @@ class ProblemaController extends Controller
     public function concurso()
     {
         //
+        /*session(['alpha'=>'developer']);*/
+        //dd(session()->get('alpha'));
+        $team=auth()->guard('kids')->user();
+
+        $estudiantes=DB::table('estudiantes')->where('equipo_id',$team->id)->get();
         $problemas=Problema::all();
-        return view('concurso.index',compact('problemas'));
+        //dd($problemas);
+        return view('concurso.index',compact('problemas','estudiantes'));
     }
+
     public function verproblema($id)
     {
         //
         $problemas=Problema::all();
         $problema_=Problema::find($id);
-        return view('concurso.index',compact('problemas','problema_'));
+        $team=auth()->guard('kids')->user();
+        $estudiantes=DB::table('estudiantes')->where('equipo_id',$team->id)->get();
+        return view('concurso.index',compact('problemas','problema_','estudiantes'));
     }
     public function login()
     {

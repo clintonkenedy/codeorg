@@ -8,9 +8,17 @@
                 <img src="{{asset('img/logocode.png')}}" alt="no hay" class="img-fluid logocode">
             </div>
             <div class="col d-flex justify-content-end">
-                <a href="" class="ms-auto navtext navtextsalibg">
+                <form action="{{route('kid.logout')}}" method="POST">
+                    @method('POST')
+                    @csrf
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                    {{--<a type="submit" class="ms-auto navtext navtextsalibg">
+                        <img src="{{asset('img/icosalir.png')}}" alt="no hay" class="img-fluid" style="height: 30px;">
+                    </a>--}}
+                </form>
+                {{--<a href="" class="ms-auto navtext navtextsalibg">
                     <img src="{{asset('img/icosalir.png')}}" alt="no hay" class="img-fluid" style="height: 30px;">
-                </a>
+                </a>--}}
             </div>
         </div>
     </div>
@@ -20,7 +28,7 @@
                 <img src="{{asset('img/mariob.png')}}" alt="no hay" class="img-fluid logocode">
             </ul>
             <ul class="navbar-nav ms-auto navtext navtextbg">
-                <strong>Equipo:</strong> Team 1
+                <strong>Equipo:</strong> {{auth()->guard('kids')->check()?auth()->guard('kids')->user()->nombre: 'Team 1'}}
             </ul>
             <ul class="navbar-nav ms-auto">
                 <img src="{{asset('img/logocode.png')}}" alt="no hay" class="img-fluid logocode">
@@ -29,9 +37,20 @@
                 <strong>Tiempo:</strong> 02:22:53
             </ul>
             <ul class="navbar-nav ms-auto navtext navtextsalibg">
-                <a href="">
-                    <img src="{{asset('img/icosalir.png')}}" alt="no hay" class="img-fluid" style="height: 30px;">
-                </a>
+                <form action="{{route('kid.logout')}}" method="POST">
+                    @method('POST')
+                    @csrf
+                    <button type="submit">
+                        <img src="{{asset('img/icosalir.png')}}" alt="no hay" class="img-fluid" style="height: 30px;">
+                    </button>
+{{--
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+--}}
+                    {{--<a type="submit" class="ms-auto navtext navtextsalibg">
+                        <img src="{{asset('img/icosalir.png')}}" alt="no hay" class="img-fluid" style="height: 30px;">
+                    </a>--}}
+                </form>
+
             </ul>
         </div>
     </div>
@@ -60,7 +79,7 @@
                         <img src="{{asset('img/abred.png')}}" alt="no hay" class="img-fluid icopartici">
                     </div>
                     <div class="col">
-                        CESAR CUSI
+                        {{$estudiantes->first()->nombre}}
                     </div>
                 </div>
             </div>
@@ -72,7 +91,7 @@
                         <img src="{{asset('img/aba.png')}}" alt="no hay" class="img-fluid icopartici">
                     </div>
                     <div class="col">
-                        CESAR CUSI
+                       {{$estudiantes->last()->nombre}}
                     </div>
                 </div>
             </div>
@@ -149,9 +168,12 @@
                             <div class="col mb-3 d-flex justify-content-center">
                                 <strong>Enlace de la solución del problema</strong>
                             </div>
-                            <form action="" method="POST">
+                            <form action="{{route('reenviados.store')}}" method="POST">
+                                @method('POST')
+                                @csrf
                                 <div class="col d-flex justify-content-center">
-                                    <input placeholder="Pegar el enlace de la solución" require type="text" class="w-50 mb-3 p-2">
+                                    <input hidden type="text" name="problema" value="{{$problema_->id}}">
+                                    <input name="enlace" placeholder="Pegar el enlace de la solución" require type="text" class="w-50 mb-3 p-2">
                                 </div>
                                 <div class="col d-flex justify-content-center">
                                     <button class="w-50 btnenviar">Enviar</button>
