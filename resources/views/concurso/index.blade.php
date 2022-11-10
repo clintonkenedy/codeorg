@@ -161,7 +161,7 @@
                                 <strong>Enlace del problema:</strong>
                             </div>
                             <div class="col mb-3">
-                                <a href="{{$problema_->problema}}" class="text-primary text-decoration-underline"><strong>Click para ver el problema</strong></a>
+                                <a href="{{$problema_->problema}}" target="_blank" class="text-primary text-decoration-underline"><strong>Click para ver el problema</strong></a>
                             </div>
                         </div>
                         <div class="row mt-5">

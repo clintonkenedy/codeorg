@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Puntuacion;
 use Illuminate\Http\Request;
 
 class CalificacionController extends Controller
@@ -13,8 +14,14 @@ class CalificacionController extends Controller
      */
     public function index()
     {
-        //
-        return view('calificacion.index');
+        $puntuaciones = Puntuacion::all();
+        return view('calificacion.index', compact('puntuaciones'));
+    }
+    public function vercalificacion($id)
+    {
+        $puntuaciones = Puntuacion::all();
+        $puntuacion_ = Puntuacion::find($id);
+        return view('calificacion.index', compact('puntuaciones', 'puntuacion_'));
     }
 
     /**
@@ -55,9 +62,13 @@ class CalificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $estado)
     {
-        //
+        dd($estado);
+        $puntuacion_ = Puntuacion::find($id);
+        $puntuacion_->estado = $estado;
+        $puntuacion_->save();
+        return view('calificacion.index', compact('puntuaciones', 'puntuacion_'));
     }
 
     /**

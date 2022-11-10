@@ -27,6 +27,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('calificaciones/{id}',[CalificacionController::class,'vercalificacion'])->name('calificaciones.show');
+Route::put('calificaciones/{id}/{estado}',[CalificacionController::class,'edit'])->name('calificacionesedit');
+
 Route::resource('usuarios',UsuarioController::class);
 Route::resource('roles',RolController::class);
 Route::resource('problemas',ProblemaController::class);
@@ -43,7 +46,7 @@ Route::get('no_autorizado',function (){
 
 Route::post('loginconcurso', [ProblemaController::class,'postlogin'])->name('concurso.login');
 
-Route::get('loginconcurso', [ProblemaController::class,'login'])->name('concurso.ver');
+// Route::get('loginconcurso', [ProblemaController::class,'login'])->name('concurso.ver');
 Route::get('concursos/{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show');
 Route::get('ranking',[ProblemaController::class,'getranking'])->name('ranking.index');
 

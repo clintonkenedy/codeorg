@@ -3,84 +3,150 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-<div class="text-center mb-5">
+<div class="text-center mb-1">
     <h1><strong>Calificar</strong></h1>
 </div>
 @stop
 
 @section('content')
-<div class="container">
+<div class="container-fluid cssfontfamily">
     <div class="row">
-        <div class="col-2 p-3 cssproblemas overflow-auto border-right border-dark">
+        <div class="col-sm-5 col-lg-3 p-3 cssproblemas overflow-auto border-right border-dark">
+            @if(count($puntuaciones)>0)
             @foreach($puntuaciones as $puntuacion)
-            <a class="btn btn-primary w-100 mb-3">{{$problema->nombre}}</a>
+            @if(empty($puntuacion->estado))
+            <a href="{{ route('calificaciones.show', $puntuacion->id) }}" class="btn cssbtn w-100 mb-3 p-3">{{$puntuacion->Problema->titulo}}</a>
+            @endif
             @endforeach
+            @foreach($puntuaciones as $puntuacion)
+            @if(!empty($puntuacion->estado))
+            <a href="{{ route('calificaciones.show', $puntuacion->id) }}" class="btn bg-transparent border border-dark w-100 mb-3 p-2">{{$puntuacion->Problema->titulo}}</a>
+            @endif
+            @endforeach
+            @else
+            <div class="text-info h-100 d-flex justify-content-center align-items-center">
+                <strong>Esperando ejercicios...</strong>
+            </div>
+            @endif
         </div>
         <div class="col cssproblemas">
-            <div class="row mt-5">
+            @if(!empty($puntuacion_) and empty($puntuacion_->estado))
+            <div class="row mt-3">
                 <div class="col d-flex justify-content-center">
-                    <a href="" class="btn btn-success w-50">Ver ejercicio</a>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <a href="" class="btn btn-success w-50">Ver solución</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col d-flex justify-content-center mt-5 iframe">
-                    <div class="embed-responsive embed-responsive-16by9 overflow-auto">
-                        <iframe style="height: 800px;" class="embed-responsive-item" src="https://studio.code.org/projects/spritelab/K0sR3_Ah2W4nb504jAkYsp6Ju5qiJHOHGIJlZiZrXe4/embed" allowfullscreen></iframe>
+                    <div class="row w-75 p-3 cssestados">
+                        <div class="col d-flex justify-content-center">
+                            <a href="" class="btn cssbtn2 btn-success w-100 rounded-pill d-flex justify-content-center align-items-center">Aceptar</a>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <a href="" class="btn cssbtn2 btn-secondary w-100 rounded-pill d-flex justify-content-center align-items-center">Parcialmente aceptado</a>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <a href="" class="btn cssbtn2 btn-danger w-100 rounded-pill d-flex justify-content-center align-items-center">Rechazar</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="row mt-5 d-flex justify-content-center">
+                <div class="col-4 d-flex justify-content-center">
+                    <a href="" class="btn cssbtn w-50">Ver ejercicio</a>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <a href="" class="btn cssbtn w-50">Ver solución</a>
+                </div>
+            </div>
+            <div class="row mt-5 d-flex justify-content-center">
+                <div class="col-4">
+                    <div class="embed-responsive embed-responsive-1by1 iframe overflow-auto">
+                        <iframe style="height: 550px;" class="embed-responsive-item" src="https://studio.code.org/projects/spritelab/K0sR3_Ah2W4nb504jAkYsp6Ju5qiJHOHGIJlZiZrXe4/embed" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="embed-responsive embed-responsive-1by1 iframe overflow-auto">
+                        <iframe style="height: 550px;" class="embed-responsive-item" src="https://studio.code.org/projects/spritelab/K0sR3_Ah2W4nb504jAkYsp6Ju5qiJHOHGIJlZiZrXe4/embed" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            @elseif(!empty($puntuacion_))
+            <div class="row h-100 d-flex justify-content-center align-items-center">
+                <div class="col-6">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">Nombre del problema</th>
+                                <th scope="col" class="text-center">Calificado como:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{$puntuacion_->Problema->titulo}}</td>
+                                <td class="d-flex justify-content-center">
+                                <span class="badge badge-primary p-2 w-100">{{$puntuacion_->estado}}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @else
+            <div class="row h-100">
+                <div class="col d-flex justify-content-center align-items-center bg-dange">
+                    Seleccione un ejercicio
+                </div>
+            </div>
+            @endif
         </div>
-        <div class="col cssproblemas d-flex justify-content-center align-items-center border-left border-dark">
-            <div class="container-fluid ">
-                <div class="row">
-                    <div class="col text-center">
-                        Estado:
-                    </div>
-                    <div class="col">
-                        <select id="cars">
-                            <option value="volvo">Sin calificar</option>
-                            <option value="saab">Aceptado</option>
-                            <option value="opel">Rechazado</option>
-                            <option value="audi">Parcialmente resuelto</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col d-flex justify-content-center">
-                        <a href="" class="btn btn-success w-50">Calificar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- <h1>holaa</h1>
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="" allowfullscreen></iframe>
-    </div>
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://studio.code.org/projects/spritelab/K0sR3_Ah2W4nb504jAkYsp6Ju5qiJHOHGIJlZiZrXe4/embed" allowfullscreen></iframe>
-    </div>
-    <iframe src="" frameborder="0"></iframe>
-    <iframe width="392" height="620" style="border: 0px;" src="https://studio.code.org/projects/applab/qDwDUrBeIUwrNe0m0TMIbT3HcyrwELwU83QKBA0OfjE/embed"></iframe>
-    <iframe width="392" height="620" style="border: 0px;" src="https://studio.code.org/projects/applab/7hAhxDtFRxADJFOGOMrRqMve63DAnVAx9vfptwOo8Un/embed?nosource"></iframe>ss -->
-    @stop
-    @section('css')
-    <style>
-        .cssproblemas {
-            height: 600px;
-        }
 
-        .iframe {
-            height: 500px;
-        }
-    </style>
-    @stop
-    @section('js')
-    <script>
-        console.log('Hi!');
-    </script>
+    </div>
+</div>
+@stop
+@section('css')
+<style>
+    ul {
+        list-style-type: none;
+    }
 
-    @stop
+    .iframe {
+        height: 100%;
+    }
+
+    .cssestados {
+        background-color: #485058;
+        border-radius: 50px;
+        border: 4px solid white;
+        box-shadow: 0px 0px 10px #485058;
+    }
+
+    .cssfontfamily {
+        font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .cssproblemas {
+        height: 700px;
+    }
+
+    .cssbtn {
+        text-decoration: none;
+        background-color: #485058;
+        color: whitesmoke;
+        border-radius: 10px;
+    }
+
+    .cssbtn:hover {
+        color: whitesmoke;
+        letter-spacing: 0.5px;
+        transition: letter-spacing 0.5s;
+    }
+
+    .cssbtn2:hover {
+        color: whitesmoke;
+        letter-spacing: 1px;
+        transition: letter-spacing 0.5s;
+    }
+</style>
+@stop
+@section('js')
+<script>
+    console.log('Hi!');
+</script>
+
+@stop
