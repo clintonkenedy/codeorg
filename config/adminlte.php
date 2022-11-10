@@ -505,6 +505,12 @@ return [
                     'asset' => true,
                     'location' => '//cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap4.min.css',
                 ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//js.pusher.com/7.2/pusher.min.js',
+                ],
+
             ],
         ],
         'Select2' => [

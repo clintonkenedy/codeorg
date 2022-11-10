@@ -8,11 +8,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($problemas as $problema)
+            @foreach($equipos as $eq)
             <tr>
-                <td>{{$problema->titulo}}</td>
-                <td>{{$problema->descripcion}}</td>
-                <td>{{$problema->problema}}</td>
+                <td>{{$eq->nombre}}</td>
+                <td>{{$eq->estudiantes->first()->nombre}}-{{$eq->estudiantes->last()->nombre}}</td>
+                <td>{{$eq->puntuacion}}</td>
             </tr>
             @endforeach
         </tbody>

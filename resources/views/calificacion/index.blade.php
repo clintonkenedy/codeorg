@@ -35,6 +35,7 @@
                 <div class="col d-flex justify-content-center">
                     <div class="row w-75 p-3 cssestados">
                         <div class="col d-flex justify-content-center">
+
                             <a href="{{route('calificaciones.estado',['id'=>$puntuacion_->id,'estado'=>'Aceptado'])}}" class="btn cssbtn2 btn-success w-100 rounded-pill d-flex justify-content-center align-items-center">Aceptar</a>
                         </div>
                         <div class="col d-flex justify-content-center">
@@ -147,6 +148,23 @@
 @section('js')
 <script>
     console.log('Hi!');
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('f66ba4ef55acfb30f359', {
+        cluster: 'us2'
+    });
+
+    var channel = pusher.subscribe('t-channel');
+    channel.bind('t-event', function(data) {
+        //alert(JSON.stringify(data));
+        window.livewire.emit('emitir1');
+    });
 </script>
 
+
+
 @stop
+
+
+
+

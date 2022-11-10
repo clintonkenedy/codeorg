@@ -10,6 +10,7 @@ use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\ReenviadoController;
 use App\Http\Controllers\KidController;
 use App\Http\Controllers\PuntuacionController;
+use App\Http\Livewire\ListaRanking;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +31,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('calificaciones/{id}',[CalificacionController::class,'vercalificacion'])->name('calificaciones.ver');
-Route::get('calificaciones/{id}/{estado}',[CalificacionController::class,'estado'])->name('calificaciones.estado');
+//Route::get('calificaciones/{id}/{estado}',[CalificacionController::class,'estado'])->name('calificaciones.estado');
+Route::get('calificaciones/{id}/{estado}',[ListaRanking::class,'estado'])->name('calificaciones.estado');
 
 Route::resource('usuarios',UsuarioController::class);
 Route::resource('roles',RolController::class);
