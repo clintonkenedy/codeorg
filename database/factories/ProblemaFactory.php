@@ -21,6 +21,7 @@ class ProblemaFactory extends Factory
             'restricciones'=>$this->faker->text(),
             'problema'=>$this->faker->name(),
             'solucion'=>$this->faker->text(),
+            'valor'=>$this->faker->numberBetween(80,140),
         ];
     }
 }

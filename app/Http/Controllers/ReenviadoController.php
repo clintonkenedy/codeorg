@@ -21,6 +21,7 @@ class ReenviadoController extends Controller
         $reenviados=Puntuacion::where('user_id',);
         $usuarios = User::role('admin')->get(); // Returns only users with the role 'writer'
 //        dd($users->first()->puntuaciones);
+        //dd(Auth::user());
         $puntuaciones=Auth::user()->puntuaciones;
         return view('reenviado.index',compact('reenviados','usuarios','puntuaciones'));
     }
@@ -100,6 +101,7 @@ class ReenviadoController extends Controller
         $reenviado->intentos=$cpt+1;
         $reenviado->estado='Enviado';
         $reenviado->puesto=0;
+        $reenviado->puntaje=0;
         $reenviado->save();
         return redirect()->back();
 

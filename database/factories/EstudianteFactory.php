@@ -18,7 +18,7 @@ class EstudianteFactory extends Factory
             'apellido_p' =>$this->faker->name(),
             'apellido_m' =>$this->faker->name(),
             'dni' =>$this->faker->randomNumber(8,true),
-            'equipo_id' =>$this->faker->numberBetween(1,20)
+            'equipo_id' =>$this->faker->numberBetween(1,3)
 
         ];
     }

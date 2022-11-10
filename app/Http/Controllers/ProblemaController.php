@@ -42,6 +42,7 @@ class ProblemaController extends Controller
     {
         $problema = new Problema();
         $problema->titulo = $request->titulo;
+        $problema->valor = $request->valor;
         $problema->descripcion = $request->descripcion;
         $problema->entradas = $request->entradas;
         $problema->salidas = $request->salidas;
@@ -93,6 +94,7 @@ class ProblemaController extends Controller
         $problema=Problema::find($id);
 
         $problema->titulo=$request->input('titulo');
+        $problema->valor=$request->input('valor');
         $problema->descripcion=$request->input('descripcion');
         $problema->entradas=$request->input('entradas');
         $problema->salidas=$request->input('salidas');

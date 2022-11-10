@@ -13,9 +13,15 @@
             <form action="{{route('problemas.store')}}" method="POST">
             @method('POST')
             @csrf
-                <div class="form-group">
-                    <label for="titulo">Titulo</label>
-                    <input type="text" class="form-control" id="titulo" name="titulo">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="titulo">Titulo</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo">
+                    </div>
+                    <div class="form-group  col-md-6">
+                        <label for="valor">Valor</label>
+                        <input type="number" class="form-control" id="valor" name="valor">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="titulo">Descripcion</label>

@@ -22,6 +22,7 @@ class CreateProblemasTable extends Migration
             $table->text('restricciones')->nullable();
             $table->string('problema');
             $table->text('solucion');
+            $table->bigInteger('valor');
             $table->timestamps();
         });
     }

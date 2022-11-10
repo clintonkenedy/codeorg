@@ -18,6 +18,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">titulo</th>
+                        <th scope="col">valor</th>
                         <th scope="col">entradas</th>
                         <th scope="col">salidas</th>
                         <th scope="col">problema</th>
@@ -33,6 +34,7 @@
                         <tr>
                             <th scope="row">{{$problema->id}}</th>
                             <td>{{$problema->titulo}}</td>
+                            <td>{{$problema->valor}}</td>
                             <td>{{$problema->entradas}}</td>
                             <td>{{$problema->salidas}}</td>
                             <td>{{$problema->problema}}</td>

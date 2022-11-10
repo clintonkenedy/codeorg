@@ -75,11 +75,15 @@ class CalificacionController extends Controller
 
     public function estado($id, $estado)
     {
+        $ptjbase=71;
+        $ptjfinal=0;
         $puesto=0;
+        $ptctotal=0;
         $puntuaciones = Puntuacion::all();
         $team=auth()->guard('kids')->user();
         $puntuacion_ = Puntuacion::find($id);
-
+        $score=Equipo::find($team->id);
+        //dd($puntuacion_->problema->valor);
         if($estado=='Aceptado'){
 
             $acepglobal=DB::table('puntuacions')
@@ -99,23 +103,57 @@ class CalificacionController extends Controller
 
             if($nohayacepglobal){
                 $puesto=1;
+                if($puntuacion_->intentos ==1){
+                    $ptjfinal=$ptjbase-$puesto;
+
+                    $ptjfinal=$ptjfinal+10;
+                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;
+                    $ptctotal=$score->puntuacion+$ptjfinal;
+                }else{
+                    $ptjfinal=$ptjbase-$puesto;
+                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;
+                    $ptctotal=$score->puntuacion+$ptjfinal;
+                }
+
                 //dd($puesto);
 
             }elseif($nohayacep){
                 $puesto=$acepglobal->puesto+1;
+                if($puntuacion_->intentos ==1){
+                    $ptjfinal=$ptjbase-$puesto;
+                    $ptjfinal=$ptjfinal+10;
+
+                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;
+
+                    $ptctotal=$score->puntuacion+$ptjfinal;
+                }else{
+                    $ptjfinal=$ptjbase-$puesto;
+                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;
+                    $ptctotal=$score->puntuacion+$ptjfinal;
+                }
+                //dd($ptjfinal);
                 //dd($puesto);
             }
         }
         $puntuacion_->estado = $estado;
         $puntuacion_->puesto = $puesto;
+        $puntuacion_->puntaje = $ptjfinal;
+
         $puntuacion_->save();
 
         $cantresueltos=DB::table('puntuacions')
             ->where('equipo_id',$team->id)
             ->where('puesto','!=',0)->get()->count();
-        $score=Equipo::find($team->id);
-        $score->puntuacion=$cantresueltos;
-        $score->save();
+        //dd($ptjbase-$puntuacion_->puesto);
+
+        //$score=Equipo::find($team->id);
+        if(!$ptctotal==0){
+            $score->puntuacion=$ptctotal;
+            $score->save();
+        }
+
+
+
 
         return redirect()->route('calificaciones.index');
     }
