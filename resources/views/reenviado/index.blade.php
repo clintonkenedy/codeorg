@@ -31,46 +31,41 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($usuarios as $us)
-                        @foreach($us->puntuaciones as $p)
-                            <tr>
+                    @foreach($puntuaciones as $p)
+                        <tr>
 
-                                <th scope="row">{{$p->id}}</th>
-                                <td>{{$p->equipo_id}}</td>
-                                <td>{{$p->problema_id}}</td>
-                                <td>{{$p->user_id}}</td>
-                                <td>{{$p->enlace}}</td>
-                                <form action="{{route('reenviados.update',$p)}}" method="POST">
-                                    @method('PUT')
-                                    @csrf
-                                    <td>
-                                        <input type="text" name="reemix" class="form-control" value="{{$p->reemix}}">
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-success">Enviar</button>
-                                    </td>
-
-                                </form>
-
-                                <td>{{$p->intentos}}</td>
-                                <td>{{$p->estado}}</td>
-                                <td>{{$p->puesto}}</td>
-                                <td width="100px">
-                                    <a class="btn btn-warning" href="{{route('problemas.edit',$p->id)}}" role="button"><i class="fas fa-edit"></i></a>
-
-                                    <form action="{{route('problemas.destroy', $p)}}" method="post"  style="display: inline">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                    </form>
+                            <th scope="row">{{$p->id}}</th>
+                            <td>{{$p->equipo_id}}</td>
+                            <td>{{$p->problema_id}}</td>
+                            <td>{{$p->user_id}}</td>
+                            <td>{{$p->enlace}}</td>
+                            <form action="{{route('reenviados.update',$p)}}" method="POST">
+                                @method('PUT')
+                                @csrf
+                                <td>
+                                    <input type="text" name="reemix" class="form-control" value="{{$p->reemix}}">
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-success">Enviar</button>
                                 </td>
 
-                            </tr>
+                            </form>
 
-                        @endforeach
+                            <td>{{$p->intentos}}</td>
+                            <td>{{$p->estado}}</td>
+                            <td>{{$p->puesto}}</td>
+                            <td width="100px">
+                                <a class="btn btn-warning" href="{{route('problemas.edit',$p->id)}}" role="button"><i class="fas fa-edit"></i></a>
+
+                                <form action="{{route('problemas.destroy', $p)}}" method="post"  style="display: inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
+
+                        </tr>
                     @endforeach
-
-
                     </tbody>
                 </table>
             </div>

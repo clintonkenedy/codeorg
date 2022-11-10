@@ -10,8 +10,12 @@ class KidController extends Controller
 {
     //
     public function login(){
+        if(auth()->guard('kids')->check()){
+            return redirect()->route('concursos.index');
+        }else{
+            return view('kid.login');
+        }
 
-        return view('kid.login');
     }
     public function autenticacion(Request $request){
         //dd($request->all());
@@ -30,11 +34,8 @@ class KidController extends Controller
             Auth::guard('kids')->login($team);
             return redirect()->route('concursos.index');
         }else{
-            return redirect()->back()->with('error','Password  are wrong');
+            return redirect()->back()->with('error','Codigo Incorrecto');
         }
-
-
-
 
 
 

@@ -12,9 +12,9 @@
 <div class="container">
     <div class="row">
         <div class="col-2 p-3 cssproblemas overflow-auto border-right border-dark">
-            @foreach($puntuaciones as $puntuacion)
+            {{--@foreach($puntuaciones as $puntuacion)
             <a class="btn btn-primary w-100 mb-3">{{$problema->nombre}}</a>
-            @endforeach
+            @endforeach--}}
         </div>
         <div class="col cssproblemas">
             <div class="row mt-5">
