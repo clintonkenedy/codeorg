@@ -48,7 +48,7 @@ Route::get('no_autorizado',function (){
 });
 
 
-Route::post('loginconcurso', [ProblemaController::class,'postlogin'])->name('concurso.login');
+//Route::post('loginconcurso', [ProblemaController::class,'postlogin'])->name('concurso.login');
 
 // Route::get('loginconcurso', [ProblemaController::class,'login'])->name('concurso.ver');
 Route::get('concursos/{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show');

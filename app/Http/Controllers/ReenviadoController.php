@@ -99,7 +99,7 @@ class ReenviadoController extends Controller
 //        dd($nintentos);
         $reenviado->intentos=$cpt+1;
         $reenviado->estado='Enviado';
-        $reenviado->puesto=2;
+        $reenviado->puesto=0;
         $reenviado->save();
         return redirect()->back();
 

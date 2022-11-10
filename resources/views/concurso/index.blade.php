@@ -189,15 +189,20 @@
                             <table class="table table-sm w-50 mt-4 mb-4 fs-5 text-center">
                                 <thead>
                                     <tr>
+                                        <th scope="col">N° de Intento</th>
                                         <th scope="col">Enviado en</th>
                                         <th scope="col">Estatus</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($envios as $en)
                                     <tr>
+                                        <td>{{$en->intentos}}</td>
                                         <td scope="row">02:05:00</td>
-                                        <td>Mark</td>
+                                        <td>{{$en->estado}}</td>
                                     </tr>
+                                @endforeach
+
                                 </tbody>
                             </table>
                         </div>

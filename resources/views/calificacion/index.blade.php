@@ -41,7 +41,7 @@
                             <a href="" class="btn cssbtn2 btn-secondary w-100 rounded-pill d-flex justify-content-center align-items-center">Parcialmente aceptado</a>
                         </div>
                         <div class="col d-flex justify-content-center">
-                            <a href="" class="btn cssbtn2 btn-danger w-100 rounded-pill d-flex justify-content-center align-items-center">Rechazar</a>
+                            <a href="{{route('calificaciones.estado',['id'=>$puntuacion_->id,'estado'=>'Rechazado'])}}" class="btn cssbtn2 btn-danger w-100 rounded-pill d-flex justify-content-center align-items-center">Rechazar</a>
                         </div>
                     </div>
                 </div>
