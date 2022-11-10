@@ -350,6 +350,12 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'equipo',
+            'url'  => 'Equipos',
+            'icon' => 'fas fa-fw fa-users',
+            'active' => ['equipos*']
+        ],
+        [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
