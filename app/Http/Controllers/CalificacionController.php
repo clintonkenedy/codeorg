@@ -71,6 +71,15 @@ class CalificacionController extends Controller
         return view('calificacion.index', compact('puntuaciones', 'puntuacion_'));
     }
 
+    public function estado($id, $estado)
+    {
+        $puntuaciones = Puntuacion::all();
+        $puntuacion_ = Puntuacion::find($id);
+        $puntuacion_->estado = $estado;
+        $puntuacion_->save();
+        return redirect()->route('calificaciones.index');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -81,6 +90,7 @@ class CalificacionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        dd($request->all());
     }
 
     /**

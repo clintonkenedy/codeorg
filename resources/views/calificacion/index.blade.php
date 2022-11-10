@@ -14,12 +14,12 @@
         <div class="col-sm-5 col-lg-3 p-3 cssproblemas overflow-auto border-right border-dark">
             @if(count($puntuaciones)>0)
             @foreach($puntuaciones as $puntuacion)
-            @if(empty($puntuacion->estado))
+            @if($puntuacion->estado=='Enviado')
             <a href="{{ route('calificaciones.show', $puntuacion->id) }}" class="btn cssbtn w-100 mb-3 p-3">{{$puntuacion->Problema->titulo}}</a>
             @endif
             @endforeach
             @foreach($puntuaciones as $puntuacion)
-            @if(!empty($puntuacion->estado))
+            @if($puntuacion->estado=='Aceptado')
             <a href="{{ route('calificaciones.show', $puntuacion->id) }}" class="btn bg-transparent border border-dark w-100 mb-3 p-2">{{$puntuacion->Problema->titulo}}</a>
             @endif
             @endforeach
@@ -30,12 +30,12 @@
             @endif
         </div>
         <div class="col cssproblemas">
-            @if(!empty($puntuacion_) and empty($puntuacion_->estado))
+            @if(!empty($puntuacion_) and ($puntuacion_->estado=='Enviado'))
             <div class="row mt-3">
                 <div class="col d-flex justify-content-center">
                     <div class="row w-75 p-3 cssestados">
                         <div class="col d-flex justify-content-center">
-                            <a href="" class="btn cssbtn2 btn-success w-100 rounded-pill d-flex justify-content-center align-items-center">Aceptar</a>
+                            <a href="{{route('calificaciones.estado',['id'=>$puntuacion_->id,'estado'=>'Aceptado'])}}" class="btn cssbtn2 btn-success w-100 rounded-pill d-flex justify-content-center align-items-center">Aceptar</a>
                         </div>
                         <div class="col d-flex justify-content-center">
                             <a href="" class="btn cssbtn2 btn-secondary w-100 rounded-pill d-flex justify-content-center align-items-center">Parcialmente aceptado</a>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            @elseif(!empty($puntuacion_))
+            @elseif(!empty($puntuacion_) and (($puntuacion_->estado=='Aceptado') or ($puntuacion_->estado=='Rechazado')))
             <div class="row h-100 d-flex justify-content-center align-items-center">
                 <div class="col-6">
                     <table class="table table-bordered">
