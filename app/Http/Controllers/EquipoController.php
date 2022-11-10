@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipo;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\TraversableContainsEqual;
 
 class EquipoController extends Controller
 {
@@ -14,7 +15,8 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        //
+        $equipo = Equipo::all();
+        return view('equipo.index', compact('equipo'));
     }
 
     /**
@@ -24,7 +26,7 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        //
+        return view('equipo.create');
     }
 
     /**
@@ -35,7 +37,21 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'codigo' => 'required',
+            'puntuacion' => 'required',
+        ]);
+
+        $equipo = new Equipo();
+
+        $equipo->nombre = $request->nombre;
+        $equipo->codigo = $request->codigo;
+        $equipo->puntuacion = $request->puntuacion;
+
+        $equipo->save();
+
+        return redirect()->route('equipos.index');
     }
 
     /**
@@ -57,7 +73,7 @@ class EquipoController extends Controller
      */
     public function edit(Equipo $equipo)
     {
-        //
+        return view('equipo.edit', compact('equipo'));
     }
 
     /**
@@ -69,7 +85,19 @@ class EquipoController extends Controller
      */
     public function update(Request $request, Equipo $equipo)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'codigo' => 'required',
+            'puntuacion' => 'required',
+        ]);
+
+        $equipo->nombre = $request->nombre;
+        $equipo->codigo = $request->codigo;
+        $equipo->puntuacion = $request->puntuacion;
+
+        $equipo->save();
+
+        return redirect()->route('equipos.index');
     }
 
     /**
@@ -80,6 +108,8 @@ class EquipoController extends Controller
      */
     public function destroy(Equipo $equipo)
     {
-        //
+        $equipo->delete();
+
+        return redirect()->route('equipos.index');
     }
 }

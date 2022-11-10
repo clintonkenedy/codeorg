@@ -24,5 +24,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->assignRole([1]);
+        $this->call(ProblemaSeeder::class);
+        $this->call(EquipoSeeder::class);
+        $this->call(EstudianteSeeder::class);
+
     }
 }

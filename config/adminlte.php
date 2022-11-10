@@ -320,37 +320,49 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
+            'text' => 'Profile',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'usuarios',
+            'text' => 'Usuarios',
             'url'  => 'usuarios',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'roles',
+            'text' => 'Roles',
             'url'  => 'roles',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas a fa-sort',
         ],
         [
-            'text' => 'problemas',
+            'text' => 'Problemas',
             'url'  => 'problemas',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa fa-align-justify',
         ],
         [
-            'text' => 'reenviar',
+            'text' => 'Reenviar',
             'url'  => 'reenviados',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa fa-reply',
         ],
         [
-            'text' => 'calificar',
+            'text' => 'Calificar',
             'url'  => 'calificaciones',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa fa-check',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'Estudiante',
+            'url'  => 'estudiantes',
+            'icon' => 'fas fa-fw fa-users',
+            'active' => ['estudiantes*']
+        ],
+        [
+            'text' => 'Equipo',
+            'url'  => 'equipos',
+            'icon' => 'fas fa-fw fa-users',
+            'active' => ['equipos*']
+        ],
+        [
+            'text' => 'Change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
