@@ -350,8 +350,14 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Estudiante',
+            'url'  => 'estudiantes',
+            'icon' => 'fas fa-fw fa-users',
+            'active' => ['estudiantes*']
+        ],
+        [
             'text' => 'equipo',
-            'url'  => 'Equipos',
+            'url'  => 'equipos',
             'icon' => 'fas fa-fw fa-users',
             'active' => ['equipos*']
         ],

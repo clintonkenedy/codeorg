@@ -6,6 +6,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\ProblemaController;
 use App\Http\Controllers\CalificacionController;
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\ReenviadoController;
 use App\Http\Controllers\KidController;
 use App\Http\Controllers\PuntuacionController;
@@ -37,6 +38,7 @@ Route::resource('problemas',ProblemaController::class);
 Route::resource('calificaciones',CalificacionController::class);
 Route::resource('reenviados',ReenviadoController::class);
 Route::resource('equipos',EquipoController::class);
+Route::resource('estudiantes',EstudianteController::class);
 
 Route::get('concursos',[ProblemaController::class,'concurso'])->name('concursos.index')->middleware('authteam');
 
