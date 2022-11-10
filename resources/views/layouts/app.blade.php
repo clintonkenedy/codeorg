@@ -15,6 +15,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/concurso.css') }}" rel="stylesheet">
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    @livewireStyles
+    @livewireScripts
     @yield('css')
 </head>
 
