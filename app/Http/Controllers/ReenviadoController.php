@@ -98,8 +98,8 @@ class ReenviadoController extends Controller
         $reenviado->reemix='hola2';
 //        dd($nintentos);
         $reenviado->intentos=$cpt+1;
-        $reenviado->estado='Rechazado';
-        $reenviado->puesto=2;
+        $reenviado->estado='Enviado';
+        $reenviado->puesto=0;
         $reenviado->save();
         return redirect()->back();
 

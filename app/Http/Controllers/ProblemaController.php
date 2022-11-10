@@ -135,27 +135,15 @@ class ProblemaController extends Controller
         //
         $problemas=Problema::all();
         $problema_=Problema::find($id);
+
         $team=auth()->guard('kids')->user();
+        $envios=DB::table('puntuacions')->where('equipo_id',$team->id)->where('problema_id',$id)->get();
+
         $estudiantes=DB::table('estudiantes')->where('equipo_id',$team->id)->get();
-        return view('concurso.index',compact('problemas','problema_','estudiantes'));
+        //dd($estudiantes);
+        return view('concurso.index',compact('problemas','problema_','estudiantes','envios'));
     }
-    public function login()
-    {
-        // dd($request->all);
-        // $problemas=Problema::all();
-        return view('concurso.loginconcurso');
-    }
-    public function postlogin(Request $request)
-    {
-/*        $equipo=Equipo::all()->where('codigo',$request->code)-get();*/
-        $equipo = Equipo::where('codigo', $request->code)->first();
-        if($equipo){
-            return redirect()->route('concursos.index');
-        }
-        else{
-            return view('concurso.loginconcurso');
-        }
-    }
+
     public function getranking(){
         // --
         $puntuacion=Puntuacion::all();

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipo;
 use App\Models\Puntuacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CalificacionController extends Controller
 {
@@ -71,6 +73,53 @@ class CalificacionController extends Controller
         return view('calificacion.index', compact('puntuaciones', 'puntuacion_'));
     }
 
+    public function estado($id, $estado)
+    {
+        $puesto=0;
+        $puntuaciones = Puntuacion::all();
+        $team=auth()->guard('kids')->user();
+        $puntuacion_ = Puntuacion::find($id);
+
+        if($estado=='Aceptado'){
+
+            $acepglobal=DB::table('puntuacions')
+                ->where('problema_id',$puntuacion_->problema_id)
+                ->where('estado','Aceptado')
+                ->where('puesto','!=',0)
+                ->get()->last();
+
+            $acep=DB::table('puntuacions')
+                ->where('problema_id',$puntuacion_->problema_id)
+                ->where('estado','Aceptado')
+                ->where('equipo_id',$team->id)
+                ->get()->last();
+            //dd($acep);
+            $nohayacepglobal=empty($acepglobal);
+            $nohayacep=empty($acep);
+
+            if($nohayacepglobal){
+                $puesto=1;
+                //dd($puesto);
+
+            }elseif($nohayacep){
+                $puesto=$acepglobal->puesto+1;
+                //dd($puesto);
+            }
+        }
+        $puntuacion_->estado = $estado;
+        $puntuacion_->puesto = $puesto;
+        $puntuacion_->save();
+
+        $cantresueltos=DB::table('puntuacions')
+            ->where('equipo_id',$team->id)
+            ->where('puesto','!=',0)->get()->count();
+        $score=Equipo::find($team->id);
+        $score->puntuacion=$cantresueltos;
+        $score->save();
+
+        return redirect()->route('calificaciones.index');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -81,6 +130,7 @@ class CalificacionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        dd($request->all());
     }
 
     /**

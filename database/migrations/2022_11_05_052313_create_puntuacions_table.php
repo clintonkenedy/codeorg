@@ -21,7 +21,7 @@ class CreatePuntuacionsTable extends Migration
             $table->string('enlace');
             $table->string('reemix');
             $table->bigInteger('intentos');
-            $table->enum('estado',['Aceptado','Rechazado','Parcialemte Aceptado']);
+            $table->enum('estado',['Enviado','Aceptado','Rechazado','Parcialemte Aceptado']);
             $table->bigInteger('puesto');
             $table->timestamps();
         });
