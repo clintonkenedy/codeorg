@@ -6,25 +6,12 @@
         <div class="row">
             <div class="col text-center">
                 <h2>Ranking</h2>
+                @livewire('lista-ranking')
+                <hr>
             </div>
         </div>
         <div class="row p-3">
-            <table class="table text-center">
-                <thead>
-                    <tr>
-                        <th scope="col">Posición</th>
-                        <th scope="col">Participantes</th>
-                        <th scope="col">Puntos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark y Omar</td>
-                        <td>100</td>
-                    </tr>
-                </tbody>
-            </table>
+            @livewire('escuchar')
         </div>
     </div>
 </div>
