@@ -1,0 +1,11 @@
+body{
+  background: #f52516;
+  background: linear-gradient(to right, #ff5151, #000000);
+}
+
+.bg {
+
+    background: url("/img/imglogin.jpg") no-repeat;
+    background-position: center center;
+}
+
