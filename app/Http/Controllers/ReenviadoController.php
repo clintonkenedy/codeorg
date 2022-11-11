@@ -17,6 +17,7 @@ class ReenviadoController extends Controller
      */
     public function index()
     {
+        dd("fd");
         //
         $reenviados=Puntuacion::where('user_id',);
         $usuarios = User::role('admin')->get(); // Returns only users with the role 'writer'
@@ -46,6 +47,10 @@ class ReenviadoController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'enlace' => 'required'
+        ]);
+
         $calificadores = User::role('admin')->get();
         $calificaid = Arr::pluck($calificadores, 'id');
 
@@ -103,7 +108,7 @@ class ReenviadoController extends Controller
         $reenviado->puesto=0;
         $reenviado->puntaje=0;
         $reenviado->save();
-        return redirect()->back();
+        return redirect()->back()->with('enviarLink_', 'ok');
 
     }
 

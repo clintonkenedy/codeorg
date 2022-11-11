@@ -142,8 +142,9 @@ class ProblemaController extends Controller
         $envios=DB::table('puntuacions')->where('equipo_id',$team->id)->where('problema_id',$id)->get();
 
         $estudiantes=DB::table('estudiantes')->where('equipo_id',$team->id)->get();
-        //dd($estudiantes);
-        return view('concurso.index',compact('problemas','problema_','estudiantes','envios'));
+        $aceptado = Puntuacion::where('estado', 'Aceptado')->where('equipo_id',$team->id)->where('problema_id',$id)->first();
+        $esperando = Puntuacion::where('estado', 'Enviado')->where('equipo_id',$team->id)->where('problema_id',$id)->first();
+        return view('concurso.index',compact('problemas','problema_','estudiantes','envios','aceptado','esperando'));
     }
 
     public function getranking(){
