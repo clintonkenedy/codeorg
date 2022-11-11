@@ -6,6 +6,8 @@ use App\Events\testevent;
 use App\Models\Equipo;
 use App\Models\Problema;
 use App\Models\Puntuacion;
+use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -44,17 +46,22 @@ class ListaRanking extends Component
     }
     public function estado($id, $estado)
     {
+        $calificadores = User::role('calificador')->get();
+        $calificaid = Arr::pluck($calificadores, 'id');
+        $tamcal=sizeof($calificaid);
+
         $ptjbase=71;
         $ptjfinal=0;
         $puesto=0;
         $ptctotal=0;
         $puntuaciones = Puntuacion::all();
-        $team=auth()->guard('kids')->user();
+       /* $team=auth()->guard('kids')->user();*/
         $puntuacion_ = Puntuacion::find($id);
+        $team=$puntuacion_->equipo;
+        //dd($team);
         $score=Equipo::find($team->id);
         //dd($puntuacion_->problema->valor);
         if($estado=='Aceptado'){
-
             $acepglobal=DB::table('puntuacions')
                 ->where('problema_id',$puntuacion_->problema_id)
                 ->where('estado','Aceptado')
