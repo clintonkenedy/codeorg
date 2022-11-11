@@ -12,7 +12,8 @@ class Escuchar extends Component
     protected $listeners = ['emitir1'=> 'render'];
     public function render()
     {
-        $equipos = Equipo::all();
-        return view('livewire.escuchar', compact('equipos'));
+        $equipos = Equipo::all()->sortByDesc('puntuacion');
+        $puntos = Puntuacion::where('estado', 'Aceptado')->where('equipo_id',$equipos[0]->id)->get()->count();
+        return view('livewire.escuchar', compact('equipos', 'puntos'));
     }
 }

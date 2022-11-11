@@ -2,16 +2,11 @@
 
 @section('content')
 <div class="d-flex justify-content-center">
-    <div class="container bg-light mt-5 rounded-5 p-3">
+    <div class="container-fluid m-5 mt-2 p-3">
         <div class="row">
-            <div class="col text-center">
-                <h2>Ranking</h2>
-                @livewire('lista-ranking')
-                <hr>
+            <div class="col p-5 text-center">
+                @livewire('escuchar')
             </div>
-        </div>
-        <div class="row p-3">
-            @livewire('escuchar')
         </div>
     </div>
 </div>
