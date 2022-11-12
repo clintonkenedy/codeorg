@@ -54,7 +54,7 @@ class ListaRanking extends Component
         $tamcal=sizeof($calificaid);
 
         $ptjbase=71;
-        $horabase = Carbon::create(2022, 11, 11, 22, 12, 0);
+        $horabase = Carbon::create(2022, 11, 12, 4, 0, 0);
         $horabase2 = Carbon::create(2022, 11, 11, 22, 22, 0);
         //        $diff=$horabase->longRelativeDiffForHumans($horabase2);
 

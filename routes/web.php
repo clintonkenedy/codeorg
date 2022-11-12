@@ -40,7 +40,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::resource('puntuacions',PuntuacionController::class);
 
 });
-Route::resource('reenviados',ReenviadoController::class)->middleware('authteam');;
+Route::resource('reenviados',ReenviadoController::class);
 
 Route::get('kid/login', [KidController::class,'login'])->name('kid.login');
 Route::post('kid/login', [KidController::class,'autenticacion'])->name('kid.auth');
