@@ -48,11 +48,11 @@
                                     <td>{{$equipos[$i]->estudiantes->first()->nombre}}-{{$equipos[$i]->estudiantes->last()->nombre}}</td>
                                     <td>
                                         @if($equipos[$i]->aceptados>0)
-                                        @for ($j = 0; $j< $equipos[$i]->aceptados; $j++) <img src="{{asset('img/globoran_color.png')}}" alt="no hay" class="  " height="45px">
+                                            @for ($j = 0; $j< $equipos[$i]->aceptados; $j++) <img src="{{asset('img/globoran_color.png')}}" alt="no hay" class="  " height="45px">
                                             @endfor
-                                            @endif
-                                            @for ($j = 0; $j < 11 - $equipos[$i]->aceptados; $j++) <img src="{{asset('img/globoran_negro.png')}}" alt="no hay" class="  " height="45px">
-                                                @endfor
+                                        @endif
+                                        @for ($j = 0; $j < 11 - $equipos[$i]->aceptados; $j++) <img src="{{asset('img/globoran_negro.png')}}" alt="no hay" class="  " height="45px">
+                                            @endfor
                                     </td>
                                     </tr>
                                     @endfor

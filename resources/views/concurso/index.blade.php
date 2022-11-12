@@ -219,7 +219,10 @@
                                     <tr>
                                         <td>{{$en->intentos}}</td>
                                         <td scope="row">02:05:00</td>
-                                        <td>{{$en->estado}}</td>
+                                        <td>
+                                            {{$en->estado=='Reenviado'?'Enviado':$en->estado}}
+                                        </td>
+                                        {{--<td>{{$en->estado}}</td>--}}
                                     </tr>
                                     @endforeach
                                     @else

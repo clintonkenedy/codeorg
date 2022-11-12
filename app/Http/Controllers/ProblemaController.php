@@ -6,6 +6,7 @@ use App\Models\Problema;
 use App\Models\Puntuacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Equipo;
 class ProblemaController extends Controller
 {
     /**
@@ -152,10 +153,12 @@ class ProblemaController extends Controller
         $puntuacion=Puntuacion::all();
         return view('concurso.ranking');
     }
-    
+
     public function onlytest(){
         // --
-        $puntuacion=Puntuacion::all();
-        return view('concurso.test');
+        //$puntuacion=Puntuacion::all()->sortByDesc('puntuacion');
+        $equipos = Equipo::all()->sortByDesc('puntuacion');
+        //dd($equipos);
+        return view('concurso.test',compact('equipos'));
     }
 }
