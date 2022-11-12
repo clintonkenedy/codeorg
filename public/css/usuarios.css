@@ -1,0 +1,7 @@
+.cuadro img{
+    position: relative;
+    z-index: 1;
+  }
+p{
+    position: absolute;
+  }

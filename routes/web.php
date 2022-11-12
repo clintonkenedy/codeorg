@@ -56,6 +56,9 @@ Route::get('no_autorizado',function (){
 Route::get('concursos/{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show');
 Route::get('ranking',[ProblemaController::class,'getranking'])->name('ranking.index');
 
+
+Route::get('rktest',[ProblemaController::class,'onlytest'])->name('ranking.test');
+
 Route::get('concursos/{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show')->middleware('authteam');
 
 
