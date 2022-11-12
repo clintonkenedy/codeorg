@@ -152,4 +152,10 @@ class ProblemaController extends Controller
         $puntuacion=Puntuacion::all();
         return view('concurso.ranking');
     }
+    
+    public function onlytest(){
+        // --
+        $puntuacion=Puntuacion::all();
+        return view('concurso.test');
+    }
 }
