@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+//use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 
 class ListaRanking extends Component
 {
@@ -51,6 +53,14 @@ class ListaRanking extends Component
         $tamcal=sizeof($calificaid);
 
         $ptjbase=71;
+        $horabase = Carbon::create(2022, 11, 11, 22, 12, 0);
+        $horabase2 = Carbon::create(2022, 11, 11, 22, 22, 0);
+//        $diff=$horabase->longRelativeDiffForHumans($horabase2);
+
+        //$diff=$horabase->diffAsCarbonInterval($horabase2);
+        $horaf=Carbon::createFromTime(0, 0, 0);
+        $horateamf=Carbon::createFromTime(0, 0, 0);
+        //dd($horaf);
         $ptjfinal=0;
         $puesto=0;
         $ptctotal=0;
@@ -80,15 +90,30 @@ class ListaRanking extends Component
             if($nohayacepglobal){
                 $puesto=1;
                 if($puntuacion_->intentos ==1){
-                    $ptjfinal=$ptjbase-$puesto;
+                    $diff=$horabase->diffAsCarbonInterval($puntuacion_->created_at);
+                    $horaf=Carbon::createFromTime($diff->hours, $diff->minutes, $diff->seconds);
+                    /*$ptjfinal=$ptjbase-$puesto;
 
                     $ptjfinal=$ptjfinal+10;
-                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;
-                    $ptctotal=$score->puntuacion+$ptjfinal;
+                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;*/
+                    //$ptctotal=$score->puntuacion+$horaf;
+                    $horateamf=Carbon::parse($score->puntuacion);
+//                    dd($horateamf);
+                    $horateamf->addHours($horaf->hour);
+                    $horateamf->addMinutes($horaf->minute);
+                    $horateamf->addSeconds($horaf->second);
+                    //dd($horateamf);
                 }else{
-                    $ptjfinal=$ptjbase-$puesto;
-                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;
-                    $ptctotal=$score->puntuacion+$ptjfinal;
+                    $diff=$horabase->diffAsCarbonInterval($puntuacion_->created_at);
+                    $horaf=Carbon::createFromTime($diff->hours, $diff->minutes, $diff->seconds);
+
+                    /*$ptjfinal=$ptjbase-$puesto;
+                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;*/
+                    /*$ptctotal=$score->puntuacion+$ptjfinal;*/
+                    $horateamf=Carbon::parse($score->puntuacion);
+                    $horateamf->addHours($horaf->hour);
+                    $horateamf->addMinutes($horaf->minute);
+                    $horateamf->addSeconds($horaf->second);
                 }
 
                 //dd($puesto);
@@ -96,24 +121,41 @@ class ListaRanking extends Component
             }elseif($nohayacep){
                 $puesto=$acepglobal->puesto+1;
                 if($puntuacion_->intentos ==1){
-                    $ptjfinal=$ptjbase-$puesto;
+                    $diff=$horabase->diffAsCarbonInterval($puntuacion_->created_at);
+                    $horaf=Carbon::createFromTime($diff->hours, $diff->minutes, $diff->seconds);
+
+                    /*$ptjfinal=$ptjbase-$puesto;
                     $ptjfinal=$ptjfinal+10;
 
-                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;
+                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;*/
 
-                    $ptctotal=$score->puntuacion+$ptjfinal;
+//                    $ptctotal=$score->puntuacion+$ptjfinal;
+                    $horateamf=Carbon::parse($score->puntuacion);
+
+                    $horateamf->addHours($horaf->hour);
+                    $horateamf->addMinutes($horaf->minute);
+                    $horateamf->addSeconds($horaf->second);
                 }else{
-                    $ptjfinal=$ptjbase-$puesto;
-                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;
-                    $ptctotal=$score->puntuacion+$ptjfinal;
+                    $diff=$horabase->diffAsCarbonInterval($puntuacion_->created_at);
+                    $horaf=Carbon::createFromTime($diff->hours, $diff->minutes, $diff->seconds);
+
+                    /*$ptjfinal=$ptjbase-$puesto;
+                    $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;*/
+//                    $ptctotal=$score->puntuacion+$ptjfinal;
+                    $horateamf=Carbon::parse($score->puntuacion);
+
+                    $horateamf->addHours($horaf->hour);
+                    $horateamf->addMinutes($horaf->minute);
+                    $horateamf->addSeconds($horaf->second);
                 }
+
                 //dd($ptjfinal);
                 //dd($puesto);
             }
         }
         $puntuacion_->estado = $estado;
         $puntuacion_->puesto = $puesto;
-        $puntuacion_->puntaje = $ptjfinal;
+        $puntuacion_->puntaje = $horaf;
 
         $puntuacion_->save();
 
@@ -123,8 +165,14 @@ class ListaRanking extends Component
         //dd($ptjbase-$puntuacion_->puesto);
 
         //$score=Equipo::find($team->id);
-        if(!$ptctotal==0){
-            $score->puntuacion=$ptctotal;
+        $cantresueltos=DB::table('puntuacions')
+            ->where('equipo_id',$team->id)
+            ->where('puesto','!=',0)->get()->count();
+        if(!$horateamf==0){
+//            dd($horateamf);
+//            $score->puntuacion=$ptctotal;
+            $score->puntuacion=$horateamf;
+            $score->aceptados=$cantresueltos;
             $score->save();
         }
 

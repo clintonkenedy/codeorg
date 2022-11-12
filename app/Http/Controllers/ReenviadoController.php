@@ -17,7 +17,7 @@ class ReenviadoController extends Controller
      */
     public function index()
     {
-        dd("fd");
+        //dd("fd");
         //
         $reenviados=Puntuacion::where('user_id',);
         $usuarios = User::role('admin')->get(); // Returns only users with the role 'writer'

@@ -23,7 +23,8 @@ class CreatePuntuacionsTable extends Migration
             $table->bigInteger('intentos');
             $table->enum('estado',['Enviado','Reenviado','Aceptado','Rechazado']);
             $table->bigInteger('puesto');
-            $table->bigInteger('puntaje');
+            $table->time('puntaje');
+            $table->text('retroalimentacion')->nullable();
             $table->timestamps();
         });
     }

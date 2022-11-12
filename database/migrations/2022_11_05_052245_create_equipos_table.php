@@ -17,7 +17,8 @@ class CreateEquiposTable extends Migration
             $table->id();
             $table->string('nombre',100);
             $table->string('codigo',100);
-            $table->bigInteger('puntuacion');
+            $table->time('puntuacion');
+            $table->bigInteger('aceptados');
             $table->timestamps();
         });
     }

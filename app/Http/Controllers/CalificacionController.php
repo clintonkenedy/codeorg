@@ -84,6 +84,8 @@ class CalificacionController extends Controller
         $puntuacion_ = Puntuacion::find($id);
         $score=Equipo::find($team->id);
         //dd($puntuacion_->problema->valor);
+        $hora = Carbon::createFromTime(19, 15, 00, 'Africa/Johannesburg');
+        //dd($hora);
         if($estado=='Aceptado'){
 
             $acepglobal=DB::table('puntuacions')

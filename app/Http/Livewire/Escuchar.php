@@ -14,6 +14,7 @@ class Escuchar extends Component
     {
         $equipos = Equipo::all()->sortByDesc('puntuacion');
         $puntos = Puntuacion::where('estado', 'Aceptado')->where('equipo_id',$equipos[0]->id)->get()->count();
+        //dd($puntos);
         return view('livewire.escuchar', compact('equipos', 'puntos'));
     }
 }

@@ -16,6 +16,7 @@ class EquipoFactory extends Factory
         return [
             'nombre' =>$this->faker->name(),
             'codigo' =>$this->faker->randomNumber(6,true),
+            'aceptados'=>0,
             'puntuacion' => 0,
         ];
     }
