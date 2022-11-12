@@ -51,12 +51,12 @@ class ListaRanking extends Component
         $calificadores = User::role('calificador')->get();
         $calificaid = Arr::pluck($calificadores, 'id');
         $tamcal=sizeof($calificaid);
-
+        
         $ptjbase=71;
         $horabase = Carbon::create(2022, 11, 11, 22, 12, 0);
         $horabase2 = Carbon::create(2022, 11, 11, 22, 22, 0);
-//        $diff=$horabase->longRelativeDiffForHumans($horabase2);
-
+        //        $diff=$horabase->longRelativeDiffForHumans($horabase2);
+        
         //$diff=$horabase->diffAsCarbonInterval($horabase2);
         $horaf=Carbon::createFromTime(0, 0, 0);
         $horateamf=Carbon::createFromTime(0, 0, 0);
@@ -65,7 +65,7 @@ class ListaRanking extends Component
         $puesto=0;
         $ptctotal=0;
         $puntuaciones = Puntuacion::all();
-       /* $team=auth()->guard('kids')->user();*/
+        /* $team=auth()->guard('kids')->user();*/
         $puntuacion_ = Puntuacion::find($id);
         $team=$puntuacion_->equipo;
         //dd($team);
@@ -73,32 +73,32 @@ class ListaRanking extends Component
         //dd($puntuacion_->problema->valor);
         if($estado=='Aceptado'){
             $acepglobal=DB::table('puntuacions')
-                ->where('problema_id',$puntuacion_->problema_id)
-                ->where('estado','Aceptado')
-                ->where('puesto','!=',0)
-                ->get()->last();
-
+            ->where('problema_id',$puntuacion_->problema_id)
+            ->where('estado','Aceptado')
+            ->where('puesto','!=',0)
+            ->get()->last();
+            
             $acep=DB::table('puntuacions')
-                ->where('problema_id',$puntuacion_->problema_id)
+            ->where('problema_id',$puntuacion_->problema_id)
                 ->where('estado','Aceptado')
                 ->where('equipo_id',$team->id)
                 ->get()->last();
-            //dd($acep);
-            $nohayacepglobal=empty($acepglobal);
+                //dd($acep);
+                $nohayacepglobal=empty($acepglobal);
             $nohayacep=empty($acep);
-
+            
             if($nohayacepglobal){
                 $puesto=1;
                 if($puntuacion_->intentos ==1){
                     $diff=$horabase->diffAsCarbonInterval($puntuacion_->created_at);
                     $horaf=Carbon::createFromTime($diff->hours, $diff->minutes, $diff->seconds);
                     /*$ptjfinal=$ptjbase-$puesto;
-
+                    
                     $ptjfinal=$ptjfinal+10;
                     $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;*/
                     //$ptctotal=$score->puntuacion+$horaf;
                     $horateamf=Carbon::parse($score->puntuacion);
-//                    dd($horateamf);
+                    //                    dd($horateamf);
                     $horateamf->addHours($horaf->hour);
                     $horateamf->addMinutes($horaf->minute);
                     $horateamf->addSeconds($horaf->second);
@@ -106,7 +106,7 @@ class ListaRanking extends Component
                 }else{
                     $diff=$horabase->diffAsCarbonInterval($puntuacion_->created_at);
                     $horaf=Carbon::createFromTime($diff->hours, $diff->minutes, $diff->seconds);
-
+                    
                     /*$ptjfinal=$ptjbase-$puesto;
                     $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;*/
                     /*$ptctotal=$score->puntuacion+$ptjfinal;*/
@@ -115,40 +115,40 @@ class ListaRanking extends Component
                     $horateamf->addMinutes($horaf->minute);
                     $horateamf->addSeconds($horaf->second);
                 }
-
+                
                 //dd($puesto);
-
+                
             }elseif($nohayacep){
                 $puesto=$acepglobal->puesto+1;
                 if($puntuacion_->intentos ==1){
                     $diff=$horabase->diffAsCarbonInterval($puntuacion_->created_at);
                     $horaf=Carbon::createFromTime($diff->hours, $diff->minutes, $diff->seconds);
-
+                    
                     /*$ptjfinal=$ptjbase-$puesto;
                     $ptjfinal=$ptjfinal+10;
-
+                    
                     $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;*/
-
-//                    $ptctotal=$score->puntuacion+$ptjfinal;
+                    
+                    //                    $ptctotal=$score->puntuacion+$ptjfinal;
                     $horateamf=Carbon::parse($score->puntuacion);
-
+                    
                     $horateamf->addHours($horaf->hour);
                     $horateamf->addMinutes($horaf->minute);
                     $horateamf->addSeconds($horaf->second);
                 }else{
                     $diff=$horabase->diffAsCarbonInterval($puntuacion_->created_at);
                     $horaf=Carbon::createFromTime($diff->hours, $diff->minutes, $diff->seconds);
-
+                    
                     /*$ptjfinal=$ptjbase-$puesto;
                     $ptjfinal=$ptjfinal+$puntuacion_->problema->valor;*/
-//                    $ptctotal=$score->puntuacion+$ptjfinal;
+                    //                    $ptctotal=$score->puntuacion+$ptjfinal;
                     $horateamf=Carbon::parse($score->puntuacion);
-
+                    
                     $horateamf->addHours($horaf->hour);
                     $horateamf->addMinutes($horaf->minute);
                     $horateamf->addSeconds($horaf->second);
                 }
-
+                
                 //dd($ptjfinal);
                 //dd($puesto);
             }
@@ -158,27 +158,27 @@ class ListaRanking extends Component
         $puntuacion_->puntaje = $horaf;
 
         $puntuacion_->save();
-
+        
         $cantresueltos=DB::table('puntuacions')
             ->where('equipo_id',$team->id)
             ->where('puesto','!=',0)->get()->count();
-        //dd($ptjbase-$puntuacion_->puesto);
-
-        //$score=Equipo::find($team->id);
-        $cantresueltos=DB::table('puntuacions')
+            //dd($ptjbase-$puntuacion_->puesto);
+            
+            //$score=Equipo::find($team->id);
+            $cantresueltos=DB::table('puntuacions')
             ->where('equipo_id',$team->id)
             ->where('puesto','!=',0)->get()->count();
-        if(!$horateamf==0){
-//            dd($horateamf);
-//            $score->puntuacion=$ptctotal;
-            $score->puntuacion=$horateamf;
-            $score->aceptados=$cantresueltos;
-            $score->save();
-        }
-
-        $this->emit('render');
-        event(new testevent("clinton"));
-        return redirect()->route('calificaciones.index');
+            if(!$horateamf==0){
+                //            dd($horateamf);
+                //            $score->puntuacion=$ptctotal;
+                $score->puntuacion=$horateamf;
+                $score->aceptados=$cantresueltos;
+                $score->save();
+            }
+            
+            // $this->emit('render');
+            event(new testevent("clinton"));
+            return redirect()->route('calificaciones.index');
     }
     public function render()
     {
