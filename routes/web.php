@@ -35,12 +35,12 @@ Route::group(['middleware'=>['auth']],function(){
     Route::resource('roles',RolController::class);
     Route::resource('problemas',ProblemaController::class);
     Route::resource('calificaciones',CalificacionController::class);
-    Route::resource('reenviados',ReenviadoController::class);
     Route::resource('equipos',EquipoController::class);
     Route::resource('estudiantes',EstudianteController::class);
     Route::resource('puntuacions',PuntuacionController::class);
 
 });
+Route::resource('reenviados',ReenviadoController::class)->middleware('authteam');;
 
 Route::get('kid/login', [KidController::class,'login'])->name('kid.login');
 Route::post('kid/login', [KidController::class,'autenticacion'])->name('kid.auth');
