@@ -32,7 +32,7 @@
                 <img src="{{asset('img/logocode.png')}}" alt="no hay" class="img-fluid logocode">
             </ul>
             <ul class="navbar-nav ms-auto navtext navtextbg">
-                <strong>Tiempo:</strong> 02:22:54
+                @livewire('temporizador')
             </ul>
             <ul class="navbar-nav ms-auto navtext navtextsalibg">
                 <form action="{{route('kid.logout')}}" method="POST">
@@ -94,7 +94,7 @@
                 @if(count($problemas)>0)
                 @foreach($problemas as $problema)
                 <a href="{{ route('concursos.show', $problema->id) }}">
-                    <div class="me-3 pt-3 p-3 mb-3 csspregu d-flex justify-content-around align-items-center">
+                    <div class="me-3 pt-3 p-3 mb-3 csspregu d-flex justify-content-between align-items-center">
                         {{$problema->titulo}}
                         @if(!empty($aceptado))
                         <img src="{{asset('img/globocolor.png')}}" alt="no hay" class="img-fluid globo me-3">
@@ -169,7 +169,7 @@
         <div class="col-3">
             <div class="container-fluid">
                 @if(!empty($problema_))
-                <div class="row fs-4 border border-dark bg-light rounded-4 p-3">
+                <div class="row fs-4 csslateral rounded-4 p-3">
                     @if(empty($aceptado))
                     <div class="col mb-3 d-flex justify-content-center">
                         <strong>Enlace de la solución del problema</strong>
@@ -201,8 +201,8 @@
                     @endif
                 </div>
                 @endif
-                <div class="row mt-5 d-flex justify-content-center">
-                    <div class="col border border-dark bg-light rounded-4">
+                <div class="row mt-5 csslateral d-flex justify-content-center rounded-4">
+                    <div class="col">
                         <h4 class="text-center mt-4">Historial de envios del ejercicio: <strong>{{!empty($problema_)?$problema_->titulo:'Titulo'}}</strong></h4>
                         <div class="d-flex justify-content-center">
                             <table class="table table-sm mt-4 mb-4 fs-5 text-center">
@@ -234,7 +234,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

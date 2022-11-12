@@ -35,7 +35,6 @@
                 <div class="col d-flex justify-content-center">
                     <div class="row w-75 p-3 cssestados">
                         <div class="col d-flex justify-content-center">
-
                             <a href="{{route('calificaciones.estado',['id'=>$puntuacion_->id,'estado'=>'Aceptado'])}}" class="btn cssbtn2 btn-success w-100 rounded-pill d-flex justify-content-center align-items-center">Aceptar</a>
                         </div>
                         <div class="col d-flex justify-content-center">
@@ -49,21 +48,21 @@
             </div>
             <div class="row mt-5 d-flex justify-content-center">
                 <div class="col-4 d-flex justify-content-center">
-                    <a href="" class="btn cssbtn w-50">Ver ejercicio</a>
+                    <a href="{{$puntuacion_->enlace}}" target="_blank" class="btn cssbtn w-50">Ver ejercicio</a>
                 </div>
                 <div class="col-4 d-flex justify-content-center">
-                    <a href="" class="btn cssbtn w-50">Ver solución</a>
+                    <a href="{{$puntuacion_->Problema->solucion}}" target="_blank" class="btn cssbtn w-50">Ver solución</a>
                 </div>
             </div>
             <div class="row mt-5 d-flex justify-content-center">
                 <div class="col-4">
                     <div class="embed-responsive embed-responsive-1by1 iframe overflow-auto">
-                        <iframe style="height: 550px;" class="embed-responsive-item" src="https://studio.code.org/projects/spritelab/K0sR3_Ah2W4nb504jAkYsp6Ju5qiJHOHGIJlZiZrXe4/embed" allowfullscreen></iframe>
+                        <iframe style="height: 550px;" class="embed-responsive-item" src="{{$puntuacion_->enlace}}/embed" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="embed-responsive embed-responsive-1by1 iframe overflow-auto">
-                        <iframe style="height: 550px;" class="embed-responsive-item" src="https://studio.code.org/projects/spritelab/K0sR3_Ah2W4nb504jAkYsp6Ju5qiJHOHGIJlZiZrXe4/embed" allowfullscreen></iframe>
+                        <iframe style="height: 550px;" class="embed-responsive-item" src="{{$puntuacion_->Problema->solucion}}/embed" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -81,7 +80,7 @@
                             <tr>
                                 <td>{{$puntuacion_->Problema->titulo}}</td>
                                 <td class="d-flex justify-content-center">
-                                <span class="badge badge-primary p-2 w-100">{{$puntuacion_->estado}}</span>
+                                    <span class="badge badge-primary p-2 w-100">{{$puntuacion_->estado}}</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -164,7 +163,3 @@
 
 
 @stop
-
-
-
-
