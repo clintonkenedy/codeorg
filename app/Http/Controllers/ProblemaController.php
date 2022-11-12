@@ -156,8 +156,12 @@ class ProblemaController extends Controller
 
     public function onlytest(){
         // --
-        //$puntuacion=Puntuacion::all()->sortByDesc('puntuacion');
-        $equipos = Equipo::all()->sortByDesc('puntuacion');
+        //$puntuacion=Puntuacion::all()->sortByDesc('aceptados');
+        $equipos1 = Equipo::all()->sortByDesc('puntuacion')->reverse()->values()->groupBy('aceptados');
+        $equipos=$equipos1->reverse()->values();
+        //dd($equipos->reverse()->values()[0][0]->nombre);
+        //$equipos = $equipos1->sortByDesc('puntuacion')->reverse()->values();
+
         //dd($equipos);
         return view('concurso.test',compact('equipos'));
     }

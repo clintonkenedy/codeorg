@@ -23,7 +23,8 @@ class CalificacionController extends Controller
     }
     public function vercalificacion($id)
     {
-        $puntuaciones = Puntuacion::all();
+        //$puntuaciones = Puntuacion::all();
+        $puntuaciones=Auth::user()->puntuaciones;
         $puntuacion_ = Puntuacion::find($id);
         return view('calificacion.index', compact('puntuaciones', 'puntuacion_'));
     }

@@ -34,19 +34,7 @@
                                     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
                                 </ol>
                                 <div class="carousel-inner">
-                                    <div class="carousel-item">
-                                        <table class="table text-center rounded-4">
-                                            <thead>
-                                                <tr class="">
-                                                    <th scope="col" class="w-25">Posición</th>
-                                                    <th scope="col">Equipo</th>
-                                                    <th scope="col">Participantes</th>
-                                                    <th scope="col">Preguntas resultas</th>
-                                                    <th scope="col">Tiempo acumulado</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
+
 
                                     <div class="carousel-item active">
                                         <table class="table text-center justify-content-center rounded-4">
@@ -61,43 +49,52 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="justify-content-center">
-                                            {{$i=0}}
-                                            @foreach($equipos as $e)
-                                                <tr>
-                                                    <td>{{$i+1}}</td>
-                                                    <td>{{$e->nombre}}</td>
-                                                    <td>{{$e->estudiantes->first()->nombre}} y {{$e->estudiantes->last()->nombre}}</td>
-                                                    <td >
-                                                        <div class="row justify-content-center">
-                                                            @if($equipos[$i]->aceptados>0)
-                                                                @for ($j = 0; $j< $equipos[$i]->aceptados; $j++)
-                                                                    <div class="cuadro col-1"style="padding-right:0;padding-left:0;">
-                                                                        <img src="{{asset('img/globoran_verde.png')}}" alt="no hay" class="  " height="40px">
-                                                                    </div>
-                                                                @endfor
-                                                            @endif
-                                                            @for ($j = 0; $j < 11 - $equipos[$i]->aceptados; $j++)
+
+                                            <div hidden>{{$i=1}}</div>
+                                            @foreach($equipos as $eq)
+                                                @foreach($eq as $e)
+
+                                                    <tr>
+                                                        <td>{{$i}}</td>
+                                                        <td>{{$e->nombre}}</td>
+                                                        <td>{{$e->estudiantes->first()->nombre}} y {{$e->estudiantes->last()->nombre}}</td>
+                                                        <td >
+                                                            <div class="row justify-content-center">
+                                                                @if($e->aceptados>0)
+                                                                    @for ($j = 0; $j< $e->aceptados; $j++)
+                                                                        <div class="cuadro col-1"style="padding-right:0;padding-left:0;">
+                                                                            <img src="{{asset('img/globoran_verde.png')}}" alt="no hay" class="  " height="40px">
+                                                                        </div>
+                                                                    @endfor
+                                                                @endif
+                                                                @for ($j = 0; $j < 11 - $e->aceptados; $j++)
                                                                     <div class="cuadro col-1"style="padding-right:0;padding-left:0;">
                                                                         <img src="{{asset('img/globoran_negro.png')}}" alt="no hay" class="  " height="40px">
                                                                     </div>
-                                                            @endfor
-{{--
-                                                            @for ($i = 0; $i < 11; $i++)
-                                                                <div class="cuadro col-1"style="padding-right:0;padding-left:0;">
-                                                                    <img src="{{asset('img/globoran_negro.png')}}" alt="no hay" class="  " height="40px">
-                                                                </div>
-                                                            @endfor--}}
-                                                        </div>
-                                                        <div hidden>{{$i++}}</div>
-                                                    </td>
-                                                    <td>{{$e->aceptados}}/11</td>
-                                                    <td>{{$e->puntuacion}}</td>
-                                                </tr>
+                                                                @endfor
+                                                                {{--
+                                                                                                                            @for ($i = 0; $i < 11; $i++)
+                                                                                                                                <div class="cuadro col-1"style="padding-right:0;padding-left:0;">
+                                                                                                                                    <img src="{{asset('img/globoran_negro.png')}}" alt="no hay" class="  " height="40px">
+                                                                                                                                </div>
+                                                                                                                            @endfor--}}
+                                                            </div>
+                                                            <div hidden>{{$i++}}</div>
+                                                        </td>
+                                                        <td>{{$e->aceptados}}/11</td>
+                                                        <td>{{$e->puntuacion}}</td>
+                                                    </tr>
+
+                                                @endforeach
+
                                             @endforeach
 
                                             </tbody>
                                         </table>
                                     </div>
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -117,19 +114,40 @@
                                         <td>
                                             <img src="{{asset('img/cup-au.png')}}" alt="no hay" class="  " height="30px"> 1
                                         </td>
-                                        <td>{{$equipos[0]->nombre}}</td>
+
+                                        <td>{{$equipos[0][0]->nombre}}</td>
+
                                     </tr>
                                     <tr>
                                         <td>
                                             <img src="{{asset('img/cup-ag.png')}}" alt="no hay" class="  " height="30px"> 2
                                         </td>
-                                        <td>{{$equipos[1]->nombre}}</td>
+                                        <div hidden>{{$a=0}}</div>
+                                        @foreach($equipos as $eq)
+                                            @foreach($eq as $e)
+                                                @if($a==1)
+                                                    <td>{{$e->nombre}}</td>
+                                                @endif
+                                                <div hidden>{{$a++}}</div>
+                                            @endforeach
+                                        @endforeach
+
+
+
                                     </tr>
                                     <tr>
                                         <td>
                                             <img src="{{asset('img/cup-cu.png')}}" alt="no hay" class="  " height="30px"> 3
                                         </td>
-                                        <td>{{$equipos[2]->nombre}}</td>
+                                        <div hidden>{{$a=0}}</div>
+                                        @foreach($equipos as $eq)
+                                            @foreach($eq as $e)
+                                                @if($a==2)
+                                                    <td>{{$e->nombre}}</td>
+                                                @endif
+                                                <div hidden>{{$a++}}</div>
+                                            @endforeach
+                                        @endforeach
                                     </tr>
                                 </tbody>
                             </table>
@@ -148,24 +166,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                <tr>
+                                    <td>
+                                        <img src="{{asset('img/globoran_verde.png')}}" alt="no hay" class="  " height="30px">
+                                    </td>
+                                    <td>Aceptado</td>
+                                </tr>
+                                    {{--<tr>
                                         <td>
                                             <img src="{{asset('img/globoran_rojo.png')}}" alt="no hay" class="  " height="30px">
                                         </td>
                                         <td>Rechazado</td>
-                                    </tr>
+                                    </tr>--}}
                                     <tr>
                                         <td>
-                                            <img src="{{asset('img/globoran_amarillo.png')}}" alt="no hay" class="  " height="30px">
+                                            <img src="{{asset('img/globoran_negro.png')}}" alt="no hay" class="  " height="30px">
                                         </td>
-                                        <td>Con Observaciones</td>
+                                        <td>Sin resolver</td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <img src="{{asset('img/globoran_verde.png')}}" alt="no hay" class="  " height="30px">
-                                        </td>
-                                        <td>Aceptado</td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                                 </div>

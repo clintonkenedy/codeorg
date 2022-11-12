@@ -96,11 +96,13 @@
                 <a href="{{ route('concursos.show', $problema->id) }}">
                     <div class="me-3 pt-3 p-3 mb-3 csspregu d-flex justify-content-between align-items-center">
                         {{$problema->titulo}}
-                        @if(!empty($aceptado))
+
+{{--
                         <img src="{{asset('img/globocolor.png')}}" alt="no hay" class="img-fluid globo me-3">
-                        @else
+--}}
+
                         <img src="{{asset('img/globoblancoynegro.png')}}" alt="no hay" class="img-fluid globo me-3">
-                        @endif
+
                     </div>
                 </a>
                 @endforeach

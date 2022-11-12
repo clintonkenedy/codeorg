@@ -38,33 +38,30 @@
                             <a href="{{route('calificaciones.estado',['id'=>$puntuacion_->id,'estado'=>'Aceptado'])}}" class="btn cssbtn2 btn-success w-100 rounded-pill d-flex justify-content-center align-items-center">Aceptar</a>
                         </div>
                         <div class="col d-flex justify-content-center">
-                            <a href="" class="btn cssbtn2 btn-secondary w-100 rounded-pill d-flex justify-content-center align-items-center">Parcialmente aceptado</a>
-                        </div>
-                        <div class="col d-flex justify-content-center">
                             <a href="{{route('calificaciones.estado',['id'=>$puntuacion_->id,'estado'=>'Rechazado'])}}" class="btn cssbtn2 btn-danger w-100 rounded-pill d-flex justify-content-center align-items-center">Rechazar</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row mt-5 d-flex justify-content-center">
-                <div class="col-4 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-center">
                     <a href="{{$puntuacion_->enlace}}" target="_blank" class="btn cssbtn w-50">Ver ejercicio</a>
                 </div>
-                <div class="col-4 d-flex justify-content-center">
+                {{--<div class="col-4 d-flex justify-content-center">
                     <a href="{{$puntuacion_->Problema->solucion}}" target="_blank" class="btn cssbtn w-50">Ver solución</a>
-                </div>
+                </div>--}}
             </div>
             <div class="row mt-5 d-flex justify-content-center">
-                <div class="col-4">
+                <div class="col-6">
                     <div class="embed-responsive embed-responsive-1by1 iframe overflow-auto">
                         <iframe style="height: 550px;" class="embed-responsive-item" src="{{$puntuacion_->enlace}}/embed" allowfullscreen></iframe>
                     </div>
-                </div>
+                </div>{{--
                 <div class="col-4">
                     <div class="embed-responsive embed-responsive-1by1 iframe overflow-auto">
                         <iframe style="height: 550px;" class="embed-responsive-item" src="{{$puntuacion_->Problema->solucion}}/embed" allowfullscreen></iframe>
                     </div>
-                </div>
+                </div>--}}
             </div>
             @elseif(!empty($puntuacion_) and (($puntuacion_->estado=='Aceptado') or ($puntuacion_->estado=='Rechazado')))
             <div class="row h-100 d-flex justify-content-center align-items-center">
