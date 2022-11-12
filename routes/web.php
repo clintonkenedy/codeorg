@@ -27,22 +27,36 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::group(['middleware'=>['auth']],function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('calificaciones/{id}',[CalificacionController::class,'vercalificacion'])->name('calificaciones.ver');
+    Route::get('calificaciones/{id}/{estado}',[ListaRanking::class,'estado'])->name('calificaciones.estado');
+    Route::resource('usuarios',UsuarioController::class);
+    Route::resource('roles',RolController::class);
+    Route::resource('problemas',ProblemaController::class);
+    Route::resource('calificaciones',CalificacionController::class);
+    Route::resource('reenviados',ReenviadoController::class);
+    Route::resource('equipos',EquipoController::class);
+    Route::resource('estudiantes',EstudianteController::class);
+    Route::resource('puntuacions',PuntuacionController::class);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
 
-Route::get('calificaciones/{id}',[CalificacionController::class,'vercalificacion'])->name('calificaciones.ver');
-//Route::get('calificaciones/{id}/{estado}',[CalificacionController::class,'estado'])->name('calificaciones.estado');
-Route::get('calificaciones/{id}/{estado}',[ListaRanking::class,'estado'])->name('calificaciones.estado');
-
-Route::resource('usuarios',UsuarioController::class);
-Route::resource('roles',RolController::class);
-Route::resource('problemas',ProblemaController::class);
-Route::resource('calificaciones',CalificacionController::class);
-Route::resource('reenviados',ReenviadoController::class);
-Route::resource('equipos',EquipoController::class);
-Route::resource('estudiantes',EstudianteController::class);
-
+Route::get('kid/login', [KidController::class,'login'])->name('kid.login');
+Route::post('kid/login', [KidController::class,'autenticacion'])->name('kid.auth');
+Route::post('kid/logout', [KidController::class,'logout'])->name('kid.logout');
 Route::get('concursos',[ProblemaController::class,'concurso'])->name('concursos.index')->middleware('authteam');
+Route::get('concursos/{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show')->middleware('authteam');
+
+
+Route::get('ranking',[ProblemaController::class,'getranking'])->name('ranking.index');
+
+
+
+//Route::get('calificaciones/{id}/{estado}',[CalificacionController::class,'estado'])->name('calificaciones.estado');
+
+
+
 
 
 Route::get('no_autorizado',function (){
@@ -53,13 +67,10 @@ Route::get('no_autorizado',function (){
 //Route::post('loginconcurso', [ProblemaController::class,'postlogin'])->name('concurso.login');
 
 // Route::get('loginconcurso', [ProblemaController::class,'login'])->name('concurso.ver');
-Route::get('concursos/{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show');
-Route::get('ranking',[ProblemaController::class,'getranking'])->name('ranking.index');
-
-Route::get('concursos/{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show')->middleware('authteam');
+//Route::get('concursos/{concurso}',[ProblemaController::class,'verproblema'])->name('concursos.show');
 
 
 
-Route::get('kid/login', [KidController::class,'login'])->name('kid.login');
-Route::post('kid/login', [KidController::class,'autenticacion'])->name('kid.auth');
-Route::post('kid/logout', [KidController::class,'logout'])->name('kid.logout');
+
+
+

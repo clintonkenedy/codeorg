@@ -14,7 +14,7 @@
         <div class="col-sm-5 col-lg-3 p-3 cssproblemas overflow-auto border-right border-dark">
             @if(count($puntuaciones)>0)
             @foreach($puntuaciones as $puntuacion)
-            @if($puntuacion->estado=='Enviado')
+            @if($puntuacion->estado=='Reenviado')
             <a href="{{ route('calificaciones.show', $puntuacion->id) }}" class="btn cssbtn w-100 mb-3 p-3">{{$puntuacion->Problema->titulo}}</a>
             @endif
             @endforeach
@@ -30,7 +30,7 @@
             @endif
         </div>
         <div class="col cssproblemas">
-            @if(!empty($puntuacion_) and ($puntuacion_->estado=='Enviado'))
+            @if(!empty($puntuacion_) and ($puntuacion_->estado=='Reenviado'))
             <div class="row mt-3">
                 <div class="col d-flex justify-content-center">
                     <div class="row w-75 p-3 cssestados">
@@ -146,7 +146,7 @@
 </style>
 @stop
 @section('js')
-<script>
+{{--<script>
     console.log('Hi!');
     Pusher.logToConsole = true;
 
@@ -159,7 +159,7 @@
         //alert(JSON.stringify(data));
         window.livewire.emit('emitir1');
     });
-</script>
+</script>--}}
 
 
 

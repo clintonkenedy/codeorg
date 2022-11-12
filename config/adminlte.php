@@ -311,57 +311,70 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
+        /*[
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
-        ],
+        ],*/
         ['header' => 'account_settings'],
-        [
+        /*[
             'text' => 'Profile',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
-        ],
+        ],*/
         [
             'text' => 'Usuarios',
             'url'  => 'usuarios',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'usuario.index'
         ],
         [
             'text' => 'Roles',
             'url'  => 'roles',
             'icon' => 'fas a fa-sort',
+            'can' => 'roles.index'
         ],
         [
             'text' => 'Problemas',
             'url'  => 'problemas',
             'icon' => 'fas fa fa-align-justify',
+            'can' => 'problemas.index'
+        ],
+        [
+            'text' => 'Puntuaciones',
+            'url'  => 'puntuacions',
+            'icon' => 'fas fa fa-align-justify',
+            'can' => 'puntuacion.index'
         ],
         [
             'text' => 'Reenviar',
             'url'  => 'reenviados',
             'icon' => 'fas fa fa-reply',
+            'can' => 'reenviar.index'
         ],
         [
             'text' => 'Calificar',
             'url'  => 'calificaciones',
             'icon' => 'fas fa fa-check',
+            'can' => 'calificar.index'
         ],
         [
             'text' => 'Estudiante',
             'url'  => 'estudiantes',
             'icon' => 'fas fa-fw fa-users',
-            'active' => ['estudiantes*']
+            'active' => ['estudiantes*'],
+            'can' => 'estudiantes.index'
         ],
         [
             'text' => 'Equipo',
             'url'  => 'equipos',
             'icon' => 'fas fa-fw fa-users',
-            'active' => ['equipos*']
+            'active' => ['equipos*'],
+            'can' => 'equipo.index'
         ],
-        [
+        /*[
             'text' => 'Change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
@@ -403,8 +416,8 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
+        ],*/
+        /*['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
@@ -419,7 +432,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*

@@ -60,7 +60,7 @@ class UsuarioController extends Controller
         $user->assignRole($request->input('rol'));
 
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('info','se creo correctamente');
 
     }
 
@@ -113,7 +113,7 @@ class UsuarioController extends Controller
         $usuario->save();
         DB::table('model_has_roles')->Where('model_id',$id)->delete();
         $usuario->assignRole($request->input('rol'));
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('info','editado correctamente');
     }
 
     /**

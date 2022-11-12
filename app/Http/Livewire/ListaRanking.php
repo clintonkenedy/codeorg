@@ -50,6 +50,7 @@ class ListaRanking extends Component
     {
         $calificadores = User::role('calificador')->get();
         $calificaid = Arr::pluck($calificadores, 'id');
+        dd($calificaid);
         $tamcal=sizeof($calificaid);
 
         $ptjbase=71;

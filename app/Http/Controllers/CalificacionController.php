@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Equipo;
 use App\Models\Puntuacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CalificacionController extends Controller
@@ -16,7 +17,8 @@ class CalificacionController extends Controller
      */
     public function index()
     {
-        $puntuaciones = Puntuacion::all();
+        //$puntuaciones = Puntuacion::all();
+        $puntuaciones=Auth::user()->puntuaciones;
         return view('calificacion.index', compact('puntuaciones'));
     }
     public function vercalificacion($id)

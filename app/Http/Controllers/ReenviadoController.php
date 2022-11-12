@@ -144,9 +144,49 @@ class ReenviadoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $calificadores = User::role('calificador')->get();
+
+        $calificaid = Arr::pluck($calificadores, 'id');
+        $tamcal=sizeof($calificaid);
+
         $puntuacion=Puntuacion::find($id);
+        $teamid=$puntuacion->equipo_id;
+        //dd($teamid);
+
+        $ptusers = DB::table('puntuacions')
+            ->whereIn('user_id', $calificaid)
+            ->get();
+        if(empty($ptusers->first())){
+            $usuarioid=-1;
+        }else{
+            $lastpt=$ptusers->last()->user_id;
+            $ismax=$lastpt==$calificaid[$tamcal-1];
+            //dd($ismax);
+            if($ismax){
+                $usuarioid=-1;
+            }else{
+                $auxi=0;
+                $usuarioid=0;
+                //dd($calificaid);
+                foreach ($calificaid as $califica){
+                    if($lastpt==$califica){
+                        $usuarioid=$auxi;
+
+                    }
+                    $auxi++;
+                }
+
+            }
+
+        }
+
+
+
+
 
         $puntuacion->reemix=$request->input('reemix');
+        $puntuacion->estado='Reenviado';
+        $puntuacion->user_id=$calificaid[$usuarioid+1];
         $puntuacion->save();
         return redirect()->route('reenviados.index');
 

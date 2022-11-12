@@ -3,11 +3,20 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+    <a class="btn btn-success float-right" href="{{route('usuarios.create')}}" role="button">Crear nuevo Usuario</a>
+
     <h1>Usuarios</h1>
 @stop
 
 @section('content')
-    <a class="btn btn-success mb-2" href="{{route('usuarios.create')}}" role="button">Crear nuevo Usuario</a>
+    @if(session('info'))
+        <div class="alert alert-success">
+            <strong>{{session('info')}}</strong>
+        </div>
+
+    @endif
+
+
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
@@ -57,6 +66,14 @@
 @section('css')
 @stop
 @section('js')
+    <script>
+        $(document).ready(function() {
+            // show the alert
+            $(".alert").first().hide().slideDown(500).delay(4000).slideUp(500, function () {
+                $(this).remove();
+            });
+        });
+    </script>
     <script> console.log('Hi!'); </script>
     <script>
         $(document).ready(function () {

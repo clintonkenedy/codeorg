@@ -1,5 +1,3 @@
-
-
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -30,7 +28,7 @@
 
                     </tr>
                     </thead>
-                    <tbody>
+                    {{--<tbody>
                     @foreach($puntuaciones as $p)
                         <tr>
 
@@ -66,7 +64,7 @@
 
                         </tr>
                     @endforeach
-                    </tbody>
+                    </tbody>--}}
                 </table>
             </div>
 
